@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Measuring Water Flow Rate Using Arduino and Flow Sensor</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/projects/projects.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="/images/logo.png" alt="EsroIT Logo" class="logo" />
+      <ul class="nav-menu">
+        <li><a href="/index.html#home">Home</a></li>
+        <li><a href="/index.html#about">About</a></li>
+        <li class="dropdown">
+          <a href="#">Services &#9662;</a>
+          <ul class="dropdown-content">
+            <li><a href="/index.html#news">News</a></li>
+            <li><a href="/index.html#events">Events</a></li>
+            <li><a href="/index.html#contacts">Contacts</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <div class="project-header">
+        <h1 class="project-title">
+          Measuring Water Flow Rate Using Arduino and Flow Sensor
+        </h1>
+        <div class="project-meta">
+          <span
+            ><i class="fas fa-calendar-alt"></i> Published: July 15, 2023</span
+          >
+          <span style="margin-left: 1rem"
+            ><i class="fas fa-tags"></i> Arduino, Sensors, Electronics</span
+          >
+        </div>
+        <img
+          src="/images/projects/project5.jpg"
+          alt="DHT11 Project"
+          class="project-image"
+        />
+        <p>
+          Flow sensor helps you to calculate the flow rate and volume of liquid
+          that has passed through the pipe.
+        </p>
+      </div>
+
+      <div class="project-content">
+        <div class="project-section">
+          <h2>Introduction</h2>
+          <p>
+            The Water Flow sensor has 3 different wires RED, YELLOW, and BLACK
+            as shown in the figure below. The red wire is generally utilized for
+            supply voltage which ranges from 5V to 18V and the black wire is
+            attached to GND. The yellow wire is utilized for the output, which
+            can be read by an MCU. <br>
+            YF Water Flow SensorThe water flow sensor
+            contains a pinwheel sensor that estimates the quantity of liquid
+            that has passed through it. <br>
+            The water flow sensor basically operates
+            on the principle of hall effect. The water flow sensor is combined
+            with a magnetic hall effect sensor, which produces an electric pulse
+            with every strike. IoT Course is an important step that will give
+            you a thorough view of various IoT Devices. <br><br>
+            Working of Project:- <br>
+            In this project, we attached the water flow sensor to a pipe. If the
+            output valve of the pipe is terminated, the output of the water flow
+            sensor is zero that means no pulses. And If the output valve of the
+            pipe is opened. The water runs via the sensor, which in turn
+            revolves around the wheel inside the sensor. In this situation, we
+            can see pulses, which are produced from the sensor. <br>
+            These pulses basically will work as an interrupt signal to the Arduino UNO. The
+            current time and loop time variable assure that for every one second
+            the value of the flow_frequency is utilized for calculation of flow
+            rate and volume. Once the calculation is completed, the
+            flow_frequency variable is set to zero and the complete procedure is
+            originated from the beginning. <br>
+
+          </p>
+        </div>
+
+        <div class="project-section">
+          <h2>Components Required</h2>
+          <div class="components-list">
+            <div class="component-card">
+              <h3>Arduino UNO</h3>
+            </div>
+            <div class="component-card">
+              <h3>Water Flow Sensor
+
+              </h3>
+            </div>
+            <div class="component-card">
+              <h3>LCD 16 X 2</h3>
+            </div>
+            <div class="component-card">
+              <h3>Connecting wires
+
+              </h3>
+            </div>
+            <div class="component-card">
+              <h3>Pipe</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-section">
+          <h2>COPY SOURCE CODE HERE</h2>
+          <div class="code-block">
+            <pre><code>
+            volatile int flow_frequency;  // Measures flow sensor pulses
+            float vol = 0.0, l_minute;   // Calculated litres/hour
+            unsigned char flowsensor = 2; // Sensor input pin (D2)
+            unsigned long currentTime;
+            unsigned long cloopTime;
+            
+            #include &lt;LiquidCrystal.h&gt;
+            LiquidCrystal lcd(12, 11, 5, 4, 3, 9);
+            
+            // Interrupt service routine
+            void flow() {
+                flow_frequency++;
+            }
+            
+            void setup() {
+                pinMode(flowsensor, INPUT);
+                digitalWrite(flowsensor, HIGH); // Enable internal pull-up
+                Serial.begin(9600);
+                lcd.begin(16, 2);
+                
+                attachInterrupt(digitalPinToInterrupt(flowsensor), flow, RISING);
+                
+                lcd.clear();
+                lcd.setCursor(0, 0);
+                lcd.print("Water Flow Meter");
+                lcd.setCursor(0, 1);
+                lcd.print("Circuit Digest");
+                
+                currentTime = millis();
+                cloopTime = currentTime;
+            }
+            
+            void loop() {
+                currentTime = millis();
+                
+                // Update every second
+                if(currentTime >= (cloopTime + 1000)) {
+                    cloopTime = currentTime;
+                    
+                    if(flow_frequency != 0) {
+                        // Calculate flow rate: Pulse frequency (Hz) = 7.5Q, Q is flow rate in L/min
+                        l_minute = (flow_frequency / 7.5);
+                        
+                        // Display flow rate
+                        lcd.clear();
+                        lcd.setCursor(0, 0);
+                        lcd.print("Rate: ");
+                        lcd.print(l_minute);
+                        lcd.print(" L/M");
+                        
+                        // Calculate and display total volume
+                        l_minute = l_minute / 60;
+                        lcd.setCursor(0, 1);
+                        vol += l_minute;
+                        lcd.print("Vol:");
+                        lcd.print(vol);
+                        lcd.print(" L");
+                        
+                        flow_frequency = 0; // Reset counter
+                        
+                        Serial.print(l_minute);
+                        Serial.println(" L/Sec");
+                    }
+                    else {
+                        Serial.println("Flow rate = 0");
+                        lcd.clear();
+                        lcd.setCursor(0, 0);
+                        lcd.print("Rate: 0 L/M");
+                        lcd.setCursor(0, 1);
+                        lcd.print("Vol:");
+                        lcd.print(vol);
+                        lcd.print(" L");
+                    }
+                }
+            }
+        </code></pre>
+            </div>
+        </div>
+        <br /><br />
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem">
+      <a href="/projects.html" class="btn"
+        ><i class="fas fa-arrow-left"></i> Back to Projects</a
+      >
+    </div>
+    <footer class="footer">
+      <p>&copy; 2025 ESROIT. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

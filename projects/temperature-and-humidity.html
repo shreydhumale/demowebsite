@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DHT11 Sensors Temperature and Humidity and i2c LCD - Arduino</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/projects/projects.css">
+    
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="/images/logo.png" alt="EsroIT Logo" class="logo">
+        <ul class="nav-menu">
+            <li><a href="/index.html#home">Home</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            <li class="dropdown">
+                <a href="#">Services &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="/index.html#news">News</a></li>
+                    <li><a href="/index.html#events">Events</a></li>
+                    <li><a href="/index.html#contacts">Contacts</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="project-header">
+            <h1 class="project-title">DHT11 Sensors Temperature and Humidity with I2C LCD - Arduino</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar-alt"></i> Published: July 15, 2023</span>
+                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Arduino, Sensors, Electronics</span>
+            </div>
+            <img src="/images/projects/project1.jpg" alt="DHT11 Project" class="project-image">
+        </div>
+        
+        <div class="project-content">
+            <div class="project-section">
+                <h2>Introduction</h2>
+                <p>In this tutorial we will learn how to use the DHT11 sensor for measuring temperature and humidity and either heat Index. And we will see the value output of the DHT sensors on both the serial monitor and the LCD screen. we are going to use The LCD screen componen with this tutorial you can also print on a serial monitor on the Desktop IDE. Code and circuit diagram are compatible within both sensors. so lets start the procedures.</p>
+            </div>
+            
+            <div class="project-section">
+                <h2>Components Required</h2>
+                <div class="components-list">
+                    <div class="component-card">
+                        <h3>DHT11 Sensor Module</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>12C LCD Display 2x16</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Arduino Board</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Bread Board</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Jumper Wires</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Type B USB cable</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="project-section">
+                <h2>Tutorial Contents</h2>
+                <p>Were going to use the I2C LCD to display the Temperature and Humidity that the DHT11 has captured, I used an Arduino UNO 5V pin to support the DHT11 and the I2C display. DHT22 humidity sensor can be used in place of DHT11 for more accuracy and higher resolution. i made a Circuit diagram on fritzing for you to easily follow the wirings.</p><br>
+                <img src="/images/Temperature and Humidity/circuit-diagram.jpg" alt="Circuit Diagram" style="width: 400px; height: 200px;"><br><br>
+                <p>Connection of I2c Display to arduino board</p><br>
+                <img src="/images/Temperature and Humidity/sensor.jpg" alt="Circuit Diagram" style="width: 400px; height: 200px;"><br><br>
+                <li>VCC - 5V</li>
+                <li>GND - GND</li>
+                <li>SCL - A4</li>
+                <li>SDA - A5</li> <br><br>
+                <p>Connection of DHT11 sensor module to arduino board</p> <br><br>
+                <img src="/images/Temperature and Humidity/sensor2.jpg" alt="arduino board" style="width: 400px; height: 200px;"><br><br>
+
+                <li>VCC - 3.3 V</li>
+                <li>GND - GND</li>
+                <li>DAT - PIN 2 PWM</li> <br><br>
+
+                <h2>SOFTWARE</h2> <br><br>
+
+                <p>We are done building the circuit so lets start to set up and make a code for this. we are going to use the arduino ide, to set the sketch for this, if you dont have make sure to download the Arduino IDE for your specific operating system. I’ll leave a link to where you can download this 
+                    software:<a href="https://www.arduino.cc/en/software/"> https://www.arduino.cc/en/Main/Software</a> </p> <br><br>
+                
+                <img src="/images/Temperature and Humidity/software1.jpg" alt="software" style="width: 400px; height: 200px;"><br><br>
+
+                <li>After the installation we need to download the DHT11 library for the sensor module Library or you can directly Installed from the Library Manager in Arduino IDE or download on github: <a href="https://github.com/adafruit/DHT-sensor-library">https://github.com/adafruit/DHT-sensor-library</a> 
+                </li> <br>
+                <li>We need to download the i2c library To get the i2c 2x16 LCD library download it here: </li> <br><br>
+
+                <img src="/images/Temperature and Humidity/software2.jpg" alt="software" style="width: 400px; height: 200px;"><br><br>
+
+                <p>When the download is finished open the zip file then copy the folder unzip the folder to your desktop you can rename it as well.</p> <br>
+                <img src="/images/Temperature and Humidity/software3.jpg" alt="software" style="width: 400px; height: 200px;"><br><br>
+
+                <p>Cut the folder in your desktop then go to your folders then locate the arduino folder>> libraries then paste it there. and now the folder liquidcrystal and DHT11 library is already in the arduino ide libraries.</p> <br><br>
+
+                <img src="/images/Temperature and Humidity/software4.jpg" alt="software" style="width: 400px; height: 200px;"><br><br>
+
+                <p>The first thing we need to do is to define the i2c LCD address i will put here the code of the i2c scanner</p> <br><br>
+
+                <p>LiquidCrystal_I2C lcd(INPUT ADDRESS HERE, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); cut the input address here on the code and put i2c address there.</p><br><br>
+
+                <p> to do this download the i2c scanner on this link: <br><a href="https://www.mediafire.com/file/f7oaa4et779yaaz/i2c_scanner.ino">http://www.mediafire.com/file/f7oaa4et779yaaz/i2c_scanner.ino</a>   open it with arduino DEsktop IDE compile then upload it to the board, now click on the serial monitor and get the address of your LCD.</p> <br><br>
+                <img src="/images/Temperature and Humidity/software5.jpg" alt="software" style="width: 400px; height: 200px;"><br><br>
+
+                <p>An address before the ! sign is the address of your display. lets say your address is 0x27 replace the input address here with your captured address. so it will become LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); <br><br>
+
+                    when making a code we need include all the libraries we will be using we have to add the library that we have recently downloaded. #include <DHT.h> for DHT sensor library and #include <LiquidCrystal_I2C.h> for the i2c 2x16 LCD DISPLAY. <br><br>
+                    
+                    
+                    #define DHTPIN 2 Define DHT pin this the pin where the sensor pin of the DHT is connected to the digital pin 2 on the arduino board. <br><br>
+                    
+                    
+                    LiquidCrystal_I2C lcd(0x27, 2, 1, 0, 4, 5, 6, 7, 3, POSITIVE); Input the i2c address that we recently make. <br><br>
+                    
+                    
+                    DHT dht; define the uppercase DHT to dht in lowercase to recognized that the lower case is the same as upper case on the same state. <br><br>
+                    
+                    
+                    setup() method is ran once at the just after the Arduino is powered up and the loop() method is ran continuously afterwards. <br><br>
+                    
+                    
+                    setup() is where you want to do any initialisation steps, and in loop() you want to run the code you want to run over and over again. <br><br>
+                    
+                    
+                    lcd.begin(16,2); initializes the LCD 2X16 and specifies the dimensions <br><br>
+                    
+                    
+                     lcd.print the iput text word that appears on the serial monitor or lcd display. <br><br>
+                    
+                    
+                     delay(2000); 1000 is equals to 1 second timeframe.</p> <br><br>
+
+            </div>
+            
+            <div class="project-section">
+                <h2>COPY SOURCE CODE HERE</h2>
+                <div class="code-block">
+                    <pre>#include &lt;Wire.h&gt;
+#include &lt;LiquidCrystal_I2C.h&gt;
+#include &lt;DHT.h&gt;
+
+#define DHTPIN 2
+#define DHTTYPE DHT11
+
+DHT dht(DHTPIN, DHTTYPE);
+LiquidCrystal_I2C lcd(0x27, 16, 2);
+
+void setup() {
+  lcd.begin();
+  lcd.backlight();
+  dht.begin();
+}
+
+void loop() {
+  float h = dht.readHumidity();
+  float t = dht.readTemperature();
+  
+  lcd.setCursor(0, 0);
+  lcd.print("Temp: ");
+  lcd.print(t);
+  lcd.print("C");
+  
+  lcd.setCursor(0, 1);
+  lcd.print("Humidity: ");
+  lcd.print(h);
+  lcd.print("%");
+  
+  delay(2000);
+}</pre>
+        </div>
+            </div>
+            <p>The end result is as shown in the picture.</p>
+            <img src="/images/Temperature and Humidity/end-result.gif" alt="software" style="width: 400px; height: 200px;"><br><br>
+
+            <p>I hope you enjoy this actitvity if want to learn how arduino works, and how to make a sketch, then maybe this site <a href="https://educ8s.tv/might">http://educ8s.tv/might</a>  help you, I was inspired by Mert Arduino and Tech for this wonderful stuff.</p> <br><br>
+
+            <div class="project-section">
+                <h2>Project Video</h2>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 2rem 0;">
+                    <iframe width="860" height="515" src="https://www.youtube.com/embed/ObjikQDh1Zc?si=BzKidJ5ql8qbFOaE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 ESROIT. All rights reserved.</p>
+      </footer>
+</body>
+</html>

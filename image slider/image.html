@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!--Font Awesome CDN-->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="image.css">
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<style>
+    
+</style>
+<body>
+<div class="container">
+    <div class="slide">
+        <div class="item" style="background-image: url(/images/robotics.jpg);">
+            <div class="content">
+                <div class="name">Robotics</div>
+                <div class="des"></div>
+                <a href="/robotics.html"  target="_parent">
+                    <button>See More</button>
+                </a>            
+            </div>
+        </div>
+        <div class="item" style="background-image: url(/images/training2.jpg);">
+            <div class="content">
+                <div class="name">Training</div>
+                <div class="des"></div>
+                <a href="/training.html" target="_parent" >
+                    <button>See More</button>
+                </a>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(/images/projects2.jpg);">
+            <div class="content">
+                <div class="name">Projects</div>
+                <div class="des"></div>
+                <a href="/projects.html" target="_parent">
+                    <button>See More</button>
+                </a>
+            </div>
+        </div>
+        <div class="item" style="background-image: url(/images/salesforce.jpg);">
+            <div class="content">
+                <div class="name">Salesforce</div>
+                <div class="des"></div>
+                <a href="/salesforce.html" target="_parent">
+                    <button>See More</button>
+                </a>            
+            </div>
+        </div>
+        <div class="item" style="background-image: url(/images/iot2.jpg);">
+            <div class="content">
+                <div class="name">IOT</div>
+                <div class="des"></div>
+                <a href="/iot.html" target="_parent">
+                    <button>See More</button>
+                </a>            
+            </div>
+        </div>
+    </div>
+
+    <div class="navigation">
+        <button class="prev"><i class="fa-solid fa-arrow-left"></i></button>
+        <button class="next"><i class="fa-solid fa-arrow-right"></i></button>
+    </div>
+</div>
+
+<script>
+    let next = document.querySelector('.next')
+    let prev = document.querySelector('.prev')
+
+    next.addEventListener('click', function(){
+        let items = document.querySelectorAll('.item')
+        document.querySelector('.slide').appendChild(items[0])
+    })
+
+    prev.addEventListener('click', function(){
+        let items = document.querySelectorAll('.item')
+        document.querySelector('.slide').prepend(items[items.length - 1])
+    })
+
+    //auto slide
+    const slide = document.querySelector('.slide');
+    let startX = 0;
+    let endX = 0;
+
+    // Touch swipe for mobile
+    slide.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    slide.addEventListener('touchmove', (e) => {
+        endX = e.touches[0].clientX;
+    });
+
+    slide.addEventListener('touchend', () => {
+        let diff = startX - endX;
+        if (Math.abs(diff) > 50) {
+            if (diff > 0) showNext();
+            else showPrev();
+        }
+    });
+
+    // Navigation buttons
+    document.querySelector('.next')?.addEventListener('click', showNext);
+    document.querySelector('.prev')?.addEventListener('click', showPrev);
+
+    function showNext() {
+        const items = document.querySelectorAll('.item');
+        slide.appendChild(items[0]); // move first to end
+    }
+
+    function showPrev() {
+        const items = document.querySelectorAll('.item');
+        slide.insertBefore(items[items.length - 1], items[0]); // move last to front
+    }
+
+    // Auto slide every 4 seconds
+    setInterval(showNext, 5000);
+
+</script>
+</body>
+</html>

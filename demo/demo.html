@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esro IT Website Demo</title>
+    <link rel="stylesheet" href="demo.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+</head>
+<body id="home">
+
+    <div class="showcase">
+        <!-- Top Navigation Bar -->
+        <div class="navbar-top">
+            <img src="images/logo.png" alt="" class="logo">
+            <a href="#home" class="brand-left">EsroIt</a>
+            <ul class="menu-right">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li style="font-weight: bold; font-style:italic; text-decoration: underline; color: rgb(12, 12, 13);"><a href="#services">Services</a></li>
+                <li><a href="#news">News</a></li>
+                <li><a href="#events">Events</a></li>
+                <li><a href="#contacts">Contacts</a></li>
+                <li><a href="#training">Training</a></li>
+                <li><a href="#projects">Projects</a></li>
+            </ul>
+
+            <!-- <div class="search-form">
+                <input type="search" name="search-box" id="search-box" placeholder="Search here...">
+                <label for="search-box" class="bx bx-search bx-sm"></label>
+            </div> -->
+        </div>
+
+        <!-- Showcase Content Section -->
+        <div class="showcase-content">
+            <h1>Electronic Solution Research Organisation</h1>
+            <p>With our innovative and insightful technology, we strive to enhance our users every day experiences. 
+                Founded in 2011, our incredible team of engineers, programmers, designers and marketers have worked tirelessly to bring ESRO IT to the forefront of the industry. 
+                Get in touch to learn more.</p>
+            <a href="#" class="btn btn-left" style="color: rgb(62, 37, 153);"> <span style="font-size: 24px; font-weight: bold;">Our Mission </span><br>
+                Our Goal, Vision & Commitment</a>
+            <a href="#" class="btn btn-right" style="color: rgb(62, 37, 153);"><span style="font-size: 24px; font-weight: bold;">Our Events </span><br>
+                Register & Help Make Change</a>
+        </div>
+    </div> 
+
+
+    <!-- services start -->
+    <section id="services" class="bg-light py-3">
+        <h1>Our Services</h1>
+        <h4>With years of experience, ESRO IT offers a variety of IT solutions that will cater to every aspect of your technological and operational demands. We know that every client is different, so a member of our team will tailor our expertise to your unique needs. Read more to learn about our services and solutions.
+
+        </h4>
+        <div class="wrapper">
+            <div class="items">
+        <div class="items">
+    <div class="item">
+        <h3>Microcontroller & Educational DIY Projects</h3>
+        <img src="./images/microcontroller.jpg" alt="Microcontroller Projects">
+        <p>As a known industry leader, we’re used to working with all types of customers - local or global, large or small. Exceptional quality is the foundation of our company, and is the driving force behind all decisions; whether it’s which materials to purchase or the best way to serve our customers. We work in a highly competitive field, so we’re constantly investing in technology and research to make sure we stay ahead of the curve. Our commitment to quality guarantees our success and your satisfaction.</p>
+    </div>
+
+    <div class="item">
+        <h3>3D Printers</h3>
+        <img src="./images/printers.jpg" alt="3D Printers">
+        <p>Our talented team works hard everyday to provide the best and quality services to clients by providing them with the professional care they deserve. Get in touch today to learn more about our 3D Printing Service.</p>
+    </div>
+
+    <div class="item">
+        <h3>Computer Laptop & Printer</h3>
+        <img src="./images/computers.jpg" alt="Computers">
+        <p>We’re committed to customer satisfaction, and know the importance of doing exceptional work. Our services have helped countless customers with their repair needs. Learn more about what we have to offer below.</p>
+    </div>
+
+    <div class="item">
+        <h3>GPS - Vehicles & Personal Tracking</h3>
+        <img src="./images/gps.jpg" alt="GPS Tracking">
+        <p>Here at ESRO IT, we value our relationship with our customers. That's why we do our best to take care of all your needs. Learn more about our customer services and see how we can help.</p>
+    </div>
+
+    <div class="item">
+        <h3>CCTV</h3>
+        <img src="./images/cctv.jpg" alt="CCTV">
+        <p>We’re proud to provide community members with top-notch service. Our clients love working with us, many of them returning as repeat customers. Get in touch to let us know what we can do for you today</p>
+    </div>
+
+    <div class="item">
+        <h3>Troubleshooting & Maintenance of Electronics</h3>
+        <img src="./images/troubleshooting.jpg" alt="Troubleshooting">
+        <p>In our daily routine, we put a lot of thought into every little thing we do, making sure you’re getting high-quality and outstanding service. We aspire to provide you with the best professionals to ensure long-lasting results, and transparently share our process every step of the way. Browse our website for additional information about our services and see how we can be of assistance.</p>
+    </div>
+
+    <div class="item">
+        <h3>Salesforce Training Course</h3>
+        <img src="./images/salesforce.jpg" alt="salesforce">
+        <p>Our Training Course was created out of a strong passion, a shared vision and a ceaseless commitment to making learning easily accessible from anywhere in the world. Our unique approach to learning is designed to provide our students with the opportunity to get an education on their own time. At the heart of everything that we do is our commitment to accessible education and our students’ success. We invite you to explore our diverse offering designed for learners from all backgrounds and levels.</p>
+    </div>
+</div>
+
+        </div>
+    </section>
+    <!-- services end -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        let myCarousel = new bootstrap.Carousel(document.querySelector("#header-slider"), {
+             interval: 113000, // Change slide every 3 seconds
+            ride: "carousel"
+        });
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar-top");
+        const servicesSection = document.getElementById("services");
+
+        window.addEventListener("scroll", function () {
+            const servicesPosition = servicesSection.getBoundingClientRect().top;
+            const viewportHeight = window.innerHeight;
+
+            if (servicesPosition < viewportHeight / 2) {
+                navbar.classList.add("scrolled");
+            } else {
+                navbar.classList.remove("scrolled");
+            }
+        });
+    });
+
+    // left navbar after scrolling to servivces
+    document.addEventListener("DOMContentLoaded", function () {
+        const navbar = document.querySelector(".navbar-top");
+        const servicesLink = document.querySelector("a[href='#services']");
+        const servicesSection = document.querySelector("#services");
+    
+        function checkScroll() {
+            const rect = servicesSection.getBoundingClientRect();
+            if (rect.top <= 50 && rect.bottom >= 50) {
+                navbar.classList.add("navbar-vertical");
+                document.body.classList.add("services-active");
+            } else {
+                navbar.classList.remove("navbar-vertical");
+                document.body.classList.remove("services-active");
+            }
+        }
+    
+        servicesLink.addEventListener("click", function (e) {
+            e.preventDefault();
+            servicesSection.scrollIntoView({ behavior: "smooth" });
+            navbar.classList.add("navbar-vertical");
+            document.body.classList.add("services-active");
+        });
+    
+        window.addEventListener("scroll", checkScroll);
+    });
+
+</script>
+
+
+</body>
+</html>

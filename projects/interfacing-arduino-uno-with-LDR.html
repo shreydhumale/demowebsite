@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Interfacing Arduino uno with LDR</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/style.css" />
+    <link rel="stylesheet" href="/projects/projects.css" />
+  </head>
+  <body>
+    <div class="navbar">
+      <img src="/images/logo.png" alt="EsroIT Logo" class="logo" />
+      <ul class="nav-menu">
+        <li><a href="/index.html#home">Home</a></li>
+        <li><a href="/index.html#about">About</a></li>
+        <li class="dropdown">
+          <a href="#">Services &#9662;</a>
+          <ul class="dropdown-content">
+            <li><a href="/index.html#news">News</a></li>
+            <li><a href="/index.html#events">Events</a></li>
+            <li><a href="/index.html#contacts">Contacts</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <div class="container">
+      <div class="project-header">
+        <h1 class="project-title">Interfacing Arduino uno with LDR</h1>
+        <div class="project-meta">
+          <span
+            ><i class="fas fa-calendar-alt"></i> Published: July 15, 2023</span
+          >
+          <span style="margin-left: 1rem"
+            ><i class="fas fa-tags"></i> Arduino, Sensors, Electronics</span
+          >
+        </div>
+        <img
+          src="/images/projects/project3.jpg"
+          alt="DHT11 Project"
+          class="project-image"
+        />
+      </div>
+
+      <div class="project-content">
+        <div class="project-section">
+          <h2>Introduction</h2>
+          <p>
+            In this basic tutorial we are going to see how to interface Arduino
+            uno with LDR sensor. So let's start !!! <br /><br />
+            Working of the circuit : Basically when there is darkness the led
+            will glow and when there is sufficient light led will stop glowing.
+            This a simple circuit for of interface Arduino uno with LDR
+            sensor.First of all we need to knw what is LDR sensor and how it
+            works ?LDR ( light dependent resistor ) also called photoresistors
+            are responsive to light. Photoresistors are used to indicate the
+            intensity or the presence or the absence of light. When there is
+            darkness the resistance of photoresistor increases and when there is
+            sufficient light it dramatically decreases.LDR light dependent
+            resistorLDR ( light dependent resistor ) which has two terminals.
+            Terminal one is the signal pin which should be connected according
+            to the code. Another terminal is considered as the ground pin which
+            should be connected to the ground of the system.Arduino Uno : The
+            Arduino Uno is a microcontroller board based on the ATmega328. It
+            has 20 digital input/output pins (of which 6 can be used as PWM
+            outputs and 6 can be used as analog inputs), a 16 MHz resonator, a
+            USB connection, a power jack, an in-circuit system programming
+            (ICSP) header, and a reset button.In the simplest terms, a
+            light-emitting diode (LED) is a semiconductor device that emits
+            light when an electric current is passed through it. Light is
+            produced when the particles that carry the current (known as
+            electrons and holes) combine together within the semiconductor
+            material. Led has two terminals : positive and negative.Now as we
+            now what is meant by LDR and how it works we can start working on
+            the connections :Connections of LDR sensor : First terminal should
+            be connected to analog pin 0 (A0) of Arduino. Second terminal should
+            be connected any one led pf the resistor. Another leg of resistor
+            should be connected to Gnd of Arduino.Led connections : Positive pin
+            should be connected to digital pin 5 of Arduino. Negative pin should
+            be connected any one led pf the resistor. Another leg of resistor
+            should be connected to Gnd of Arduino.1 / 2 •
+          </p>
+        </div>
+
+        <div class="project-section">
+          <h2>Components Required</h2>
+          <div class="components-list">
+            <div class="component-card">
+              <h3>Arduino UNO</h3>
+            </div>
+            <div class="component-card">
+              <h3>LDR, 5 Mohm</h3>
+            </div>
+            <div class="component-card">
+              <h3>LED (generic)</h3>
+            </div>
+            <div class="component-card">
+              <h3>Resistor 10k ohm</h3>
+            </div>
+            <div class="component-card">
+              <h3>Jumper wires (generic)</h3>
+            </div>
+            <div class="component-card">
+              <h3>Breadboard (generic)</h3>
+            </div>
+          </div>
+        </div>
+
+        <div class="project-section">
+          <h2>COPY SOURCE CODE HERE</h2>
+          <div class="code-block">
+            <pre><code>
+        const int ledPin = 5;   // digital pin 5 
+        const int ldrPin = A0;  // analog pin 0
+        
+        void setup() {
+            // The setup() function runs once at startup
+            Serial.begin(9600);
+            pinMode(ledPin, OUTPUT);  // LED as output
+            pinMode(ldrPin, INPUT);   // LDR sensor as input
+        }
+        
+        void loop() {
+            // Main code that runs repeatedly
+            int ldrStatus = analogRead(ldrPin);
+            
+            if (ldrStatus <= 200) {
+                digitalWrite(ledPin, HIGH);  // Turn LED on in darkness
+                Serial.print("Darkness detected, LED ON : ");
+                Serial.println(ldrStatus);
+            } 
+            else {
+                digitalWrite(ledPin, LOW);   // Turn LED off in light
+                Serial.print("Sufficient light, LED OFF : ");
+                Serial.println(ldrStatus);
+            }
+        }
+    </code></pre>
+    <pre><code>
+        /*
+        * Interfacing Arduino Uno with LDR Sensor
+        * Controls LED based on light intensity
+        */
+        
+       const int ledPin = 5;    // LED connected to digital pin 5
+       const int ldrPin = A0;   // LDR sensor connected to analog pin A0
+       
+       void setup() {
+           // Initialize serial communication at 9600 baud rate
+           Serial.begin(9600);
+           
+           // Configure pin modes
+           pinMode(ledPin, OUTPUT);  // Set LED pin as output
+           pinMode(ldrPin, INPUT);   // Set LDR pin as input
+       }
+       
+       void loop() {
+           // Read current light level from LDR
+           int ldrStatus = analogRead(ldrPin);
+           
+           if (ldrStatus <= 200) {
+               // Dark environment detected
+               digitalWrite(ledPin, HIGH);  // Turn LED on
+               Serial.print("Low light detected ("); 
+               Serial.print(ldrStatus);
+               Serial.println("): LED turned ON");
+           } 
+           else {
+               // Bright environment detected
+               digitalWrite(ledPin, LOW);   // Turn LED off
+               Serial.print("Adequate light detected (");
+               Serial.print(ldrStatus);
+               Serial.println("): LED turned OFF");
+           }
+           
+           delay(100);  // Small delay for stability
+       }</code></pre>
+          </div>
+        </div><br><br>
+        
+      </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem">
+      <a href="/projects.html" class="btn"
+        ><i class="fas fa-arrow-left"></i> Back to Projects</a
+      >
+    </div>
+    <footer class="footer">
+      <p>&copy; 2025 ESROIT. All rights reserved.</p>
+    </footer>
+  </body>
+</html>

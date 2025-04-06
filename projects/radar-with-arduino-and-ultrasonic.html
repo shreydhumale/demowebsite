@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Radar with Arduino & Ultrasonic</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/projects/projects.css">
+    
+    <style>
+        .code-block {
+  background: #2d2d2d;
+  border-radius: 8px;
+  padding: 1rem;
+  margin: 1rem 0;
+  overflow-x: auto;
+}
+
+.code-block pre {
+  margin: 0;
+  font-family: 'Courier New', monospace;
+  white-space: pre;
+  color: #f8f8f2;
+  line-height: 1.5;
+}
+
+.code-block h3 {
+  color: #f8f8f2;
+  margin-top: 0;
+  border-bottom: 1px solid #444;
+  padding-bottom: 0.5rem;
+}
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="/images/logo.png" alt="EsroIT Logo" class="logo">
+        <ul class="nav-menu">
+            <li><a href="/index.html#home">Home</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            <li class="dropdown">
+                <a href="#">Services &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="/index.html#news">News</a></li>
+                    <li><a href="/index.html#events">Events</a></li>
+                    <li><a href="/index.html#contacts">Contacts</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="project-header">
+            <h1 class="project-title">Radar with Arduino & Ultrasonic</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar-alt"></i> Published: July 15, 2023</span>
+                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Arduino, Sensors, Electronics</span>
+            </div>
+            <img src="/images/projects/project6-img.jpg" alt="DHT11 Project" class="project-image">
+            <p>Detect any object that comes in the range of this radar with ultrasonic sensor and Arduino</p>
+        </div>
+        
+        <div class="project-section">
+            <h2>Components Required</h2>
+            <div class="components-list">
+                <div class="component-card">
+                    <h3>SG90 Micro-servo motor   1</h3>
+                </div>
+                <div class="component-card">
+                    <h3>Ultrasonic Sensor - HC-SR04 (Generic)  1
+
+                    </h3>
+                </div>
+                <div class="component-card">
+                    <h3>Arduino UNO
+
+                    </h3>
+                </div>
+            </div>
+        </div>
+
+        <div class="project-content">
+            <div class="project-section">
+                <h2>Project description</h2>
+                <p>Scroll down to read more about how to make a radar with ultrasonic sensor and Arduino. The programming is done in the Arduino IDE and the radar is displayed using the Processing IDE. In simple words this is how the project works. The ultrasonic sensor is mounted on a servo motor which rotates sideways. The sensor scans he area within it's distance (around 200cm far). If there is no object in a specified range let's say that there is nothing in front of the sensor at about a distance of 40cm then all green lines are display on the radar. On the other hand if we place an object within the 40cm range then the sensor detects the object and that is indicated by the red lines on the radar. <br>
+
+                    Building the project- I always start with the hardware connections first so that I remember the pin number while writing the code. First I connected the Ultrasonic sensor with the Arduino Board in the following way:- <br>
+                    VCC -5V <br>
+
+                    GND-GND PIN <br>
+                    
+                    TRIG -2 <br>
+                    
+                    ECHO-3 <br><br>
+
+                    Then next I connected the servo motor as follows:- <br>
+
+                    RED wire - 5V <br>
+
+                    BROWN wire- GND <br>
+
+                    ORANGE - 4 <br><br>
+
+                    Once all the connections were done I stick the ultrasonic sensor on the servo motor with a glue gun (it doesn't stay for long but is great as a temporary solution) <br>
+
+                    Moving forward with the coding part I created a function to measure the distance from the sensor and then inside a loop I gave command to rotate the servo motor from left to  right.  In the Processing IDE simply open the code for radar and mention the PORT name and then run the program. Try bringing an object near the sensor and you will see a difference in the pattern of the radar (P.S I forgot to take pictures of the process so forgive me for that but I am uploading a video hope that it will be helpful)
+                </p>
+            </div>
+            
+            <div class="project-section">
+                <h2> SOURCE CODE </h2>
+                <div class="code-block">
+                    <h3>Arduino Code</h3>
+                    <pre><code class="language-cpp">#include &lt;Servo.h&gt;
+                    
+                    const int trigPin = 10;
+                    const int echoPin = 11;
+                    long duration;
+                    int distance;
+                    Servo myServo;
+                    
+                    void setup() {
+                      pinMode(trigPin, OUTPUT);
+                      pinMode(echoPin, INPUT);
+                      Serial.begin(9600);
+                      myServo.attach(12);
+                    }
+                    
+                    void loop() {
+                      // Rotate servo from 15 to 165 degrees
+                      for(int i=15; i<=165; i++) {  
+                        myServo.write(i);
+                        delay(30);
+                        distance = calculateDistance();
+                        sendData(i, distance);
+                      }
+                      
+                      // Rotate servo from 165 to 15 degrees
+                      for(int i=165; i>15; i--) {  
+                        myServo.write(i);
+                        delay(30);
+                        distance = calculateDistance();
+                        sendData(i, distance);
+                      }
+                    }
+                    
+                    int calculateDistance() { 
+                      digitalWrite(trigPin, LOW); 
+                      delayMicroseconds(2);
+                      digitalWrite(trigPin, HIGH); 
+                      delayMicroseconds(10);
+                      digitalWrite(trigPin, LOW);
+                      duration = pulseIn(echoPin, HIGH);
+                      distance = duration * 0.034 / 2;
+                      return distance;
+                    }
+                    
+                    void sendData(int angle, int distance) {
+                      Serial.print(angle);
+                      Serial.print(",");
+                      Serial.print(distance);
+                      Serial.print(".");
+                    }</code></pre>
+                    </div>
+                    
+                    <div class="code-block">
+                    <h3>Processing Code</h3>
+                    <pre><code class="language-java">import processing.serial.*;
+                    import java.awt.event.KeyEvent;
+                    import java.io.IOException;
+                    
+                    Serial myPort;
+                    String angle = "", distance = "", data = "", noObject;
+                    float pixsDistance;
+                    int iAngle, iDistance;
+                    int index1 = 0, index2 = 0;
+                    PFont orcFont;
+                    
+                    void setup() {
+                      size(1200, 700);
+                      smooth();
+                      myPort = new Serial(this, "COM12", 9600);
+                      myPort.bufferUntil('.');
+                    }
+                    
+                    void draw() {
+                      fill(98, 245, 31);
+                      noStroke();
+                      fill(0, 4); 
+                      rect(0, 0, width, height-height*0.065); 
+                      fill(98, 245, 31);
+                      drawRadar();
+                      drawLine();
+                      drawObject();
+                      drawText();
+                    }
+                    
+                    void serialEvent(Serial myPort) {
+                      data = myPort.readStringUntil('.');
+                      data = data.substring(0, data.length()-1);
+                      index1 = data.indexOf(",");
+                      angle = data.substring(0, index1);
+                      distance = data.substring(index1+1);
+                      iAngle = int(angle);
+                      iDistance = int(distance);
+                    }
+                    
+                    void drawRadar() {
+                      pushMatrix();
+                      translate(width/2, height-height*0.074);
+                      noFill();
+                      strokeWeight(2);
+                      stroke(98, 245, 31);
+                      arc(0, 0, (width-width*0.0625), (width-width*0.0625), PI, TWO_PI);
+                      arc(0, 0, (width-width*0.27), (width-width*0.27), PI, TWO_PI);
+                      arc(0, 0, (width-width*0.479), (width-width*0.479), PI, TWO_PI);
+                      arc(0, 0, (width-width*0.687), (width-width*0.687), PI, TWO_PI);
+                      line(-width/2, 0, width/2, 0);
+                      line(0, 0, (-width/2)*cos(radians(30)), (-width/2)*sin(radians(30)));
+                      line(0, 0, (-width/2)*cos(radians(60)), (-width/2)*sin(radians(60)));
+                      line(0, 0, (-width/2)*cos(radians(90)), (-width/2)*sin(radians(90)));
+                      line(0, 0, (-width/2)*cos(radians(120)), (-width/2)*sin(radians(120)));
+                      line(0, 0, (-width/2)*cos(radians(150)), (-width/2)*sin(radians(150)));
+                      line((-width/2)*cos(radians(30)), 0, width/2, 0);
+                      popMatrix();
+                    }
+                    
+                    void drawObject() {
+                      pushMatrix();
+                      translate(width/2, height-height*0.074);
+                      strokeWeight(9);
+                      stroke(255, 10, 10);
+                      pixsDistance = iDistance*((height-height*0.1666)*0.025);
+                      if(iDistance < 40) {
+                        line(pixsDistance*cos(radians(iAngle)), -pixsDistance*sin(radians(iAngle)),
+                             (width-width*0.505)*cos(radians(iAngle)), -(width-width*0.505)*sin(radians(iAngle)));
+                      }
+                      popMatrix();
+                    }
+                    
+                    void drawLine() {
+                      pushMatrix();
+                      strokeWeight(9);
+                      stroke(30, 250, 60);
+                      translate(width/2, height-height*0.074);
+                      line(0, 0, (height-height*0.12)*cos(radians(iAngle)), -(height-height*0.12)*sin(radians(iAngle)));
+                      popMatrix();
+                    }
+                    
+                    void drawText() {
+                      pushMatrix();
+                      noObject = (iDistance > 40) ? "Out of Range" : "In Range";
+                      fill(0, 0, 0);
+                      noStroke();
+                      rect(0, height-height*0.0648, width, height);
+                      fill(98, 245, 31);
+                      textSize(25);
+                      text("10cm", width-width*0.3854, height-height*0.0833);
+                      text("20cm", width-width*0.281, height-height*0.0833);
+                      text("30cm", width-width*0.177, height-height*0.0833);
+                      text("40cm", width-width*0.0729, height-height*0.0833);
+                      textSize(40);
+                      text("Behind The Clutter", width-width*0.875, height-height*0.0277);
+                      text("Angle: " + iAngle + "°", width-width*0.48, height-height*0.0277);
+                      text("Distance: " + ((iDistance<40) ? iDistance + " cm" : ""), width-width*0.26, height-height*0.0277);
+                      popMatrix(); 
+                    }
+                
+                </code></pre>
+                    </div>
+                    
+            </div>
+        
+
+            <p>I hope you enjoy this actitvity if want to learn how arduino works, and how to make a sketch, then maybe this site <a href="https://educ8s.tv/might">http://educ8s.tv/might</a>  help you, I was inspired by Mert Arduino and Tech for this wonderful stuff.</p> <br><br>
+
+            <div class="project-section">
+                <h2>Project Video</h2>
+                <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 2rem 0;">
+                  <iframe width="860" height="515" src="https://www.youtube.com/embed/3nYq8MGjIF4?si=1cmRmH06IXQLTHy7" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                </div>
+                <a href="https://drive.google.com/file/d/1d69FR60YWaQJTvGuhsTQh7bIwDFXQsh5/view">https://drive.google.com/file/d/1d69FR60YWaQJTvGuhsTQh7bIwDFXQsh5/view</a>
+            </div>
+            
+           
+
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+    <footer class="footer">
+      <p>&copy; 2025 ESROIT. All rights reserved.</p>
+    </footer>
+</body>
+</html>

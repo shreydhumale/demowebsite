@@ -1,0 +1,415 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap');
+
+/* Global Reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: white;
+    overflow-x: hidden;
+    line-height: 1.6;
+    color: #333;
+}
+
+html {
+    /* scroll-padding-top:90px;  */
+    scroll-behavior: smooth;
+    
+}
+
+/* ========== Showcase Section ========== */
+.showcase {
+    background: linear-gradient(-45deg, #133a74, #5239af, #3b3daf, #b255dd);
+    animation: gradientMove 8s ease infinite;
+    background-size: 300% 300%;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 20px;
+    position: relative;
+}
+
+.showcase::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.3);
+    z-index: 1;
+
+}
+
+.showcase * {
+    z-index: 2;
+}
+
+/* ========== Top Navigation Bar ========== */
+.navbar-top {
+    width: 100%;
+    box-shadow: #0A2940;
+    padding: 15px 80px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+.navbar-top .brand-left {
+    color: #183047;
+    font-size: 40px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: color 0.3s ease-in-out;
+    margin-right: 300px;
+}
+
+.navbar-top .logo{
+    width: 110px;
+}
+.navbar-top .brand-left:hover {
+    color: #443f88;
+}
+
+.navbar-top .menu-right {
+    display: flex;
+    list-style: none;
+    margin-top: 15px;
+    margin-right: 50px
+}
+
+.navbar-top .menu-right li {
+    margin: 0 8px;
+}
+
+.navbar-top .menu-right a {
+    text-decoration: none;
+    color: white;
+    font-size: 19px;
+    padding: 10px;
+}
+
+.navbar-top .menu-right a:hover {
+    color: #1d1767;
+    background: rgba(255, 255, 255, 0.2);
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 8px;
+}
+
+.navbar-top.scrolled {
+    background-color: #523dafd5; 
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.navbar-top.scrolled a {
+    color: white; 
+}
+
+
+/* ========== Showcase Content ========== */
+.showcase-content {
+    max-width: 700px;
+    padding: 120px 20px;
+    text-align: left;
+    position: absolute;
+    left: 4%;
+    top: 55%;
+    transform: translateY(-50%);
+}
+
+.showcase-content h1 {
+    color: white;
+    font-size: 50px;
+    margin: 15px 0;
+    font-weight: 700;
+    line-height: 1.2;
+}
+
+.showcase-content p {
+    color: white;
+    line-height: 1.6;
+    font-size: 18px;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+/* ========== Buttons ========== */
+.btn {
+    color: white;
+    padding: 12px 28px;
+    font-size: 18px;
+    border-radius: 5px;
+    transition: all 0.3s ease-in-out;
+    text-decoration: none;
+    font-weight: 500;
+    display: inline-block;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    border: none;
+    cursor: pointer;
+}
+
+.btn-left {
+    background: linear-gradient(to right, #98c785, #5d9d40);
+}
+
+.btn-right {
+    background: linear-gradient(to right, #98c785, #5d9d40);
+    margin-left: 10px;
+}
+
+.btn-left:hover,
+.btn-right:hover {
+      background: linear-gradient(to right, #7aadf0, #e9f4f7a9);
+    transform: scale(1.07);
+}
+
+/* ========== Responsive Design ========== */
+@media (max-width: 768px) {
+    .navbar-top {
+        padding: 10px 30px;
+    }
+
+    .navbar-top .menu-right {
+        flex-direction: column;
+        align-items: center;
+        background: #22567e;
+        position: absolute;
+        top: 60px;
+        right:0;
+        width: 200px;
+        display: none;
+        padding: 10px;
+        border-radius: 5px;
+    }
+
+    .navbar-top .menu-right.active {
+        display: flex;
+    }
+
+    .navbar-top .menu-right li {
+        margin: 10px 0;
+    }
+
+    .menu-toggle {
+        font-size: 24px;
+        color: #1b3652;
+        cursor: pointer;
+        display: block;
+    }
+
+    .showcase-content {
+        left: 20px;
+        padding: 80px 20px;
+    }
+
+    .showcase-content h1 {
+        font-size: 40px;
+    }
+
+    .showcase-content p {
+        font-size: 14px;
+    }
+
+    .btn {
+        font-size: 14px;
+        padding: 10px 20px;
+    }
+}
+
+@media (max-width: 480px) {
+    .navbar-top .brand-left {
+        font-size: 30px;
+    }
+
+    .showcase-content h1 {
+        font-size: 30px;
+    }
+
+    .showcase-content p {
+        font-size: 12px;
+    }
+
+    .btn {
+        font-size: 12px;
+        padding: 8px 16px;
+    }
+}
+
+/* Vertical Navbar when in Services Section */
+.navbar-vertical {
+    width: 250px;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background: #1b3652;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 20px;
+    box-shadow: 4px 0 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Adjust Navbar Items in Vertical Mode */
+.navbar-vertical .menu-right {
+    flex-direction: column;
+    width: 100%;
+    margin: 0;
+}
+
+.navbar-vertical .menu-right li {
+    width: 100%;
+    padding: 10px 0;
+}
+
+.navbar-vertical .menu-right a {
+    color: white;
+    padding: 10px 20px;
+    display: block;
+    text-align: left;
+}
+
+.navbar-vertical .menu-right a:hover {
+    background: rgba(255, 255, 255, 0.274);
+    border-radius: 5px;
+}
+
+/* Adjust Content When Navbar is Vertical */
+body.services-active {
+    margin-left: 250px; /* Push content right */
+    transition: margin-left 0.3s ease-in-out;
+}
+
+/* Services Section */
+#services {
+    /* padding: 100px 0; */
+    text-align: center;
+    background: linear-gradient(-45deg, #a3a0cc, #a295d1, #bebfe4, #d297ee);
+    animation: gradientMove 8s ease infinite;
+    background-size: 300% 300%;}
+
+
+
+#services h1 {
+    font-size: 42px;
+    color: #1b3652;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 15px;
+    letter-spacing: 1px;
+    position: relative;
+    display: inline-block;
+}
+
+
+/* Description */
+#services h4 {
+    color: #1b3652;
+    font-size: 17px;
+    max-width: 900px; /* Controls width */
+    margin: 0 auto 30px; /* Centered text */
+    text-align: center;
+    line-height: 1.6;
+    font-weight: 500;
+}
+
+/* Service Cards Layout */
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.items {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 30px; /* Space between services */
+    width: 80%;
+    margin: auto;
+}
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    text-align: center;
+    padding: 25px 0;
+    border-bottom: 2px solid #ccc; /* Separator between services */
+}
+
+.item:last-child {
+    border-bottom: none; /* Remove last separator */
+}
+
+.item h3 {
+    font-size: 24px;
+    color: #1b3652;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    position: relative;
+    padding-bottom: 5px;
+}
+
+.item h3::after {
+    content: "";
+    width: 60px;
+    height: 3px;
+    background-color: #1b3652;
+    display: block;
+    margin: 5px auto 0;
+}
+
+.item img {
+    width: 30%;
+    max-width: 400px;
+    height: auto;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    transition: transform 0.3s ease-in-out;
+}
+
+.item p {
+    font-size: 16px;
+    color: #444;
+    line-height: 1.6;
+    max-width: 800px;
+    text-align: justify;
+    padding: 0 20px;
+}
+
+.item:hover img {
+    transform: scale(1.05);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .items {
+        width: 90%;
+    }
+
+    .item img {
+        width: 80%;
+    }
+
+    .item p {
+        font-size: 14px;
+        padding: 0 10px;
+    }
+}

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Interfacing an I2C LCD with Arduino UNO</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/projects/projects.css">
+    
+    <style>
+        
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="/images/logo.png" alt="EsroIT Logo" class="logo">
+        <ul class="nav-menu">
+            <li><a href="/index.html#home">Home</a></li>
+            <li><a href="/index.html#about">About</a></li>
+            <li class="dropdown">
+                <a href="#">Services &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="/index.html#news">News</a></li>
+                    <li><a href="/index.html#events">Events</a></li>
+                    <li><a href="/index.html#contacts">Contacts</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="project-header">
+            <h1 class="project-title">Interfacing an I2C LCD with Arduino UNO</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar-alt"></i> Published: July 15, 2023</span>
+                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Arduino, Sensors, Electronics</span>
+            </div>
+            <img src="/images/projects/project4-2.jpg" alt="DHT11 Project" class="project-image">
+        </div>
+        
+        <div class="project-content">
+            <div class="project-section">
+                <p>If you’re searching for a display that uses fewer pins to communicate with the microcontroller, then this is for you.</p><br><br>
+                <h2>Introduction</h2>
+                <p>If you’re searching for a display that uses fewer pins to communicate with the microcontroller then this tutorial is for you. Because In this tutorial, we are going to interface ” I2C LCD with Arduino UNO”. I2C LCD only requires two pins for the interfacing. An LCD comprises the adapter and a display. Usually, the LCD is utilized to display the characters. Further, the 16*2 display LCD has a backlight, allowing 32 ASCII characters to display. This display has two rows so each row can print 16 characters. The LCD also contains the adapter. Hence the adapter is an 8-bit chip. The adapter is there to convert the I2C data coming from an Arduino into the parallel data that is the need of LCD. <br>
+                he LCD board has a little potentiometer in blue color to adjust the contrast of the display. Moreover, the jumper is also there to supply power to the backlight Hence the jumper can be removed and an external voltage can be applied to the header pin to control the intensity of the backlight. The LCD has four pins. GND, VCC, SDA, and SCL. SDA is the serial data pin used t transmit and receive data and SCL is the Serial clock pin
+                </p>
+                <img src="/images/projects/project4-chip.jpg" alt="" style="width: 300px;">
+            </div>
+            
+            <div class="project-section">
+                <h2>Components Required</h2>
+                <div class="components-list">
+                    <div class="component-card">
+                        <h3>Arduino UNO X 1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>USB Cable Type A to B  X 1 </h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Jumper Wires</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>12C LCD   X 1</h3>
+                    </div>
+                </div>
+            </div> <br><br>
+            
+            <div class="project-section">
+                <h2>Circuit Diagram</h2>
+                <img src="/images/projects/project4-circuit-diagram.jpg" alt="">
+            </div>
+           
+            <div class="project-section">
+                <h2>Connection Table</h2>
+                <div class="connection-table">
+                    <table>
+                        <tr>
+                            <th>Arduino</th>
+                            <th>12C LCD</th>
+                        </tr>
+                        <tr>
+                            <td>GND</td>
+                            <td>GND</td>
+                        </tr>
+                        <tr>
+                            <td>5V</td>
+                            <td>VCC</td>
+                        </tr>
+                        <tr>
+                            <td>A4</td>
+                            <td>SAD</td>
+                        </tr>
+                         <tr>
+                            <td>A5</td>
+                            <td>SCL</td>
+                         </tr>
+                    </table>
+                </div>
+            </div> <br><br>
+            
+            <div class="project-section">
+                <h2> SOURCE CODE </h2>
+                <div class="code-block">
+                    <pre><code class="language-cpp">#include &lt;Wire.h&gt;
+                
+                void setup() {
+                  Serial.begin(9600);
+                
+                  // Leonardo: wait for serial port to connect
+                  while (!Serial) {
+                    // Wait for serial port to connect
+                  }
+                
+                  Serial.println();
+                  Serial.println("I2C scanner. Scanning...");
+                  byte count = 0;
+                  
+                  Wire.begin();
+                  for (byte i = 8; i < 120; i++) {
+                    Wire.beginTransmission(i);
+                    if (Wire.endTransmission() == 0) { 
+                      Serial.print("Found address: ");
+                      Serial.print(i, DEC);
+                      Serial.print(" (0x");
+                      Serial.print(i, HEX);
+                      Serial.println(")");
+                      count++;
+                      delay(1);  // Short delay
+                    } // end of good response
+                  } // end of for loop
+                  
+                  Serial.println("Done.");
+                  Serial.print("Found ");
+                  Serial.print(count, DEC);
+                  Serial.println(" device(s).");
+                }  // end of setup
+                
+                void loop() {}
+            </code></pre>
+                </div>
+            </div>
+         
+            <div class="project-section">
+                <h2>Working Explaination</h2><br>
+                <p>To interface the I2C LCD with Arduino UNO connect the circuit according to the diagram given above. Write the above-mentioned code of determining the 12C address in your Arduino IDE and upload the code in Arduino UNO. Open the serial monitor and wait until the device is found. After that write the other code to print the message on LCD and upload it too in Arduino. The message will be displayed on the 12c LCD.</p><br><br>
+
+                <h3>Code Explaination </h3>
+                <p>TO PRINT THE MESSAGE :-  </p><br>
+                <li>Download the liquidCrystal_12C library. You can download the library from:
+                    <a href="https://github.com/johnrickman/LiquidCrystal_I2C">https://github.com/johnrickman/LiquidCrystal_I2C</a>
+                </li><br>
+                <li>Include the downloaded library. and enter the address of your 12C LCD. using LCD( ).
+
+                </li><br>
+                <li>In the void setup, initialize the LCD by LCD.init( ). Clear the LCD by LCD.clear. And then turn ON the backlight by using LCD.backlight( ). To print the message, first set the cursor by using LCD. setCursor( A,B). Write the character number of characters at the place of A and line number at the place of B. print the message by using LCD.print( ).</li>
+            </div>
+
+
+            
+        </div>
+    </div>
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+    <footer class="footer">
+        <p>&copy; 2025 ESROIT. All rights reserved.</p>
+      </footer>
+</body>
+</html>
