@@ -1,0 +1,127 @@
+/* service.css */
+
+body {
+  margin: 0;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  line-height: 1.6;
+  background-color: #f8f9fa;
+  color: #333;
+}
+#services {
+  padding-top: 40px;
+}
+
+h1 {
+  text-align: center;
+  margin-top: 40px;
+  font-size: 2.8rem;
+  color: #2c3e50;
+}
+
+h4 {
+  max-width: 1000px;
+  margin: 20px auto;
+  padding: 0 20px;
+  text-align: center;
+  font-weight: 400;
+  color: #555;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 30px;
+  padding: 40px 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.item {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.07);
+  padding: 20px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  overflow: hidden;
+}
+
+.item:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.312);
+}
+
+.item h3 {
+  text-align: center;
+  color: #2980b9;
+  margin-bottom: 15px;
+  font-size: 1.3rem;
+}
+
+.item img {
+  width: 500px;
+  height: 300px;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  margin: 0 auto 15px auto;
+  transition: transform 0.3s ease;
+
+}
+.item:hover img {
+  transform: scale(1.05);
+  box-shadow: 0 15px 30px rgba(208, 124, 209, 0.511);
+
+}
+
+
+.read-more-wrapper {
+  position: relative;
+}
+
+.read-more {
+  background: #2980b9;
+  color: white;
+  padding: 8px 16px;
+  text-align: center;
+  border-radius: 8px;
+  cursor: pointer;
+  width: fit-content;
+  margin: 0 auto;
+  font-size: 0.95rem;
+  transition: background 0.3s;
+}
+
+.read-more:hover {
+  background: #1c5980;
+  
+}
+
+.read-more-box {
+  display: none;
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #444;
+  line-height: 1.5;
+  width: 500px;
+  max-width: 90%; /* for responsiveness on small screens */
+  margin-left: auto;
+  margin-right: auto;
+  text-align: justify;
+}
+
+
+.read-more.active + .read-more-box {
+  display: block;
+}
+
+/* Footer */
+.footer {
+  background-color: #2c3e50;
+  color: #fff;
+  text-align: center;
+  padding: 20px 0;
+  margin-top: 40px;
+  font-size: 0.95rem;
+}
+
