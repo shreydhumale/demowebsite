@@ -1,0 +1,7 @@
+home page done---
+
+work on services, highlight the services in nav bar
+
+options in projects, training, news tab
+
+events popup on home page

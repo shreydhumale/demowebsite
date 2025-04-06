@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form with Star Rating</title>
+    <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+    <style>
+      /* Animated gradient background */
+body {
+    background: linear-gradient(-45deg, #c0c5ff, #dcd2f7, #b6b6f5, #f5d5ec);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 20px;
+    margin: 0;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Form styling */
+.feedback-form {
+    max-width: 500px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 16px;
+    padding: 30px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(6px);
+    animation: fadeInUp 0.8s ease forwards;
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+h1 {
+    text-align: center;
+    color: #4b2994;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
+
+.form-group {
+    margin-bottom: 18px;
+}
+
+.form-control {
+    width: 100%;
+    padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.form-control:focus {
+    outline: none;
+    border-color: #9e6df9;
+    box-shadow: 0 0 0 3px rgba(158, 109, 249, 0.2);
+}
+
+/* Rating */
+.rating-container {
+    margin: 20px 0;
+}
+
+.rating-container label {
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 6px;
+    display: inline-block;
+}
+
+.stars {
+    font-size: 26px;
+    cursor: pointer;
+}
+
+.star {
+    color: #ddd;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.star:hover,
+.star.active {
+    color: #ffc107;
+    transform: scale(1.2);
+}
+
+/* Submit button */
+.btn-submit {
+    background: linear-gradient(135deg, #8e6ce6, #6a36c6);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    font-size: 16px;
+    font-weight: 500;
+    border-radius: 30px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 18px rgba(110, 72, 180, 0.3);
+}
+
+.btn-submit:hover {
+    background: linear-gradient(135deg, #6a36c6, #8e6ce6);
+    box-shadow: 0 8px 22px rgba(110, 72, 180, 0.5);
+}
+
+.btn-submit:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* Header block */
+.header-content {
+    background: linear-gradient(135deg, #c3a3ff, #6c63ff);
+    color: white;
+    text-align: center;
+    padding: 25px;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    animation: fadeInUp 1s ease forwards;
+}
+
+    </style>
+</head>
+<body>
+    <header class="header" id="feedback">
+        <div class="header-content">
+            <h1>Share Your Feedback</h1>
+            <p>We value your opinion and would love to hear from you</p>
+        </div>
+    </header>
+    <h1>Feedback Form</h1>
+    <form id="feedbackForm" class="feedback-form">
+        <div class="form-group">
+            <input type="text" id="firstName" placeholder="First Name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="text" id="lastName" placeholder="Last Name" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="email" id="email" placeholder="Email" class="form-control" required>
+        </div>
+        <div class="form-group">
+            <input type="tel" id="phone" placeholder="Phone" class="form-control">
+        </div>
+        
+        <!-- Star Rating System -->
+        <div class="form-group rating-container">
+            <label>Rate your experience:</label>
+            <div class="stars">
+                <span class="star" data-value="1">★</span>
+                <span class="star" data-value="2">★</span>
+                <span class="star" data-value="3">★</span>
+                <span class="star" data-value="4">★</span>
+                <span class="star" data-value="5">★</span>
+            </div>
+            <input type="hidden" id="rating" name="rating" value="0">
+            <div id="rating-text" style="margin-top: 5px; color: #666;"></div>
+        </div>
+        
+        <div class="form-group">
+            <textarea id="feedbackText" placeholder="Your feedback" class="form-control" rows="5" required></textarea>
+        </div>
+        <button type="submit" class="btn-submit" id="submitBtn">Submit Feedback</button>
+    </form>
+
+    <script>
+        // Initialize EmailJS
+        (function() {
+            emailjs.init('Ano1AEqyh29pYyeAW'); // Replace with your actual public key
+        })();
+
+        // Star Rating Functionality
+        const stars = document.querySelectorAll('.star');
+        const ratingInput = document.getElementById('rating');
+        const ratingText = document.getElementById('rating-text');
+        
+        stars.forEach(star => {
+            star.addEventListener('click', function() {
+                const value = parseInt(this.getAttribute('data-value'));
+                ratingInput.value = value;
+                
+                // Update star display
+                stars.forEach((s, index) => {
+                    if (index < value) {
+                        s.classList.add('active');
+                    } else {
+                        s.classList.remove('active');
+                    }
+                });
+                
+                // Update rating text
+                const ratingMessages = [
+                    "",
+                    "Poor",
+                    "Fair",
+                    "Good",
+                    "Very Good",
+                    "Excellent"
+                ];
+                ratingText.textContent = ratingMessages[value];
+            });
+            
+            // Hover effects
+            star.addEventListener('mouseover', function() {
+                const value = parseInt(this.getAttribute('data-value'));
+                stars.forEach((s, index) => {
+                    if (index < value) {
+                        s.style.color = "#ffc107";
+                    }
+                });
+            });
+            
+            star.addEventListener('mouseout', function() {
+                const currentRating = parseInt(ratingInput.value);
+                stars.forEach((s, index) => {
+                    if (index >= currentRating) {
+                        s.style.color = "#ddd";
+                    }
+                });
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('feedbackForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+            const submitBtn = document.getElementById('submitBtn');
+            
+            // Validate rating
+            if (ratingInput.value === "0") {
+                alert("Please select a rating");
+                return;
+            }
+            
+            // Disable button during submission
+            submitBtn.disabled = true;
+            submitBtn.textContent = "Sending...";
+            
+            const params = {
+                firstName: document.getElementById('firstName').value.trim(),
+                lastName: document.getElementById('lastName').value.trim(),
+                email: document.getElementById('email').value.trim(),
+                phone: document.getElementById('phone').value.trim() || 'Not provided',
+                rating: ratingInput.value,
+                feedbackText: document.getElementById('feedbackText').value.trim(),
+                date: new Date().toLocaleString()
+            };
+
+            emailjs.send('service_wzok44q', 'template_wpcl1sq', params)
+                .then(function() {
+                    alert('Thank you for your feedback!');
+                    document.getElementById('feedbackForm').reset();
+                    
+                    // Reset stars
+                    stars.forEach(star => {
+                        star.classList.remove('active');
+                        star.style.color = "#ddd";
+                    });
+                    ratingInput.value = "0";
+                    ratingText.textContent = "";
+                })
+                .catch(function(error) {
+                    console.error('Failed to send feedback:', error);
+                    alert('Failed to send feedback. Please try again later.');
+                })
+                .finally(function() {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = "Submit Feedback";
+                });
+        });
+    </script>
+</body>
+</html>

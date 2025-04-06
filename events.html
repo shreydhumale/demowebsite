@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Events - Your Website</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <style>
+        :root {
+            --primary: #2f60a1;
+            --secondary: #f5f7fa;
+            --accent: #508acc;
+            --text: #333;
+            --light-gray: #e9ecef;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary);
+            color: var(--text);
+        }
+        
+        .events-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #7e9bc5 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .events-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        
+        .events-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .events-filter {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+        
+        .filter-btn {
+            padding: 8px 20px;
+            background: white;
+            border: 1px solid var(--light-gray);
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .filter-btn:hover, .filter-btn.active {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+        
+        .events-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .event-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.08);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .event-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.12);
+        }
+        
+        .event-image {
+            height: 200px;
+            overflow: hidden;
+        }
+        
+        .event-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        
+        .event-card:hover .event-image img {
+            transform: scale(1.05);
+        }
+        
+        .event-content {
+            padding: 25px;
+        }
+        
+        .event-date {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 5px 15px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+        }
+        
+        .event-title {
+            font-size: 1.4rem;
+            margin: 0 0 10px 0;
+            color: var(--primary);
+        }
+        
+        .event-meta {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 15px;
+            font-size: 0.9rem;
+            color: #666;
+        }
+        
+        .event-meta i {
+            color: var(--accent);
+        }
+        
+        .event-description {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .event-btn {
+            display: inline-block;
+            padding: 8px 20px;
+            background: var(--primary);
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            font-weight: 500;
+            transition: background 0.3s ease;
+        }
+        
+        .event-btn:hover {
+            background: var(--accent);
+        }
+        
+        
+        @media (max-width: 768px) {
+            .events-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .newsletter-form {
+                flex-direction: column;
+            }
+            
+            .newsletter-form input,
+            .newsletter-form button {
+                width: 100%;
+                border-radius: 4px;
+                margin: 5px 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <img src="images/logo.png" alt="EsroIT Logo" class="logo">
+        <ul class="nav-menu">
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li class="dropdown">
+                <a href="#">Services &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="index.html#news">News</a></li>
+                    <li><a href="events.html">Events</a></li>
+                    <li><a href="training.html">Training</a></li>
+                    <li><a href="about.html">About</a></li>
+                    <li><a href="services.html">Our Services</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <section class="events-header">
+        <h1>Upcoming Events</h1>
+        <p>Join us for exciting workshops, seminars, and networking opportunities</p>
+    </section>
+    
+    <div class="container">
+        <div class="events-filter">
+            <button class="filter-btn active" data-filter="all">All Events</button>
+            <button class="filter-btn" data-filter="workshop">Workshops</button>
+            <button class="filter-btn" data-filter="seminar">Seminars</button>
+            <button class="filter-btn" data-filter="conference">Conferences</button>
+            <button class="filter-btn" data-filter="networking">Networking</button>
+        </div>
+        
+        <div class="events-grid">
+            <!-- Event 1 -->
+            <div class="event-card" data-category="workshop">
+                <div class="event-image">
+                    <img src="/images/events.jpg" alt="Robotics Workshop">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">June 15, 2023</span>
+                    <h3 class="event-title">Advanced Robotics Workshop</h3>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Innovation Center</span>
+                        <span><i class="fas fa-clock"></i> 10:00 AM - 4:00 PM</span>
+                    </div>
+                    <p class="event-description">
+                        Learn cutting-edge robotics techniques from industry experts. Hands-on session included.
+                    </p>
+                    <a href="#" class="event-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Event 2 -->
+            <div class="event-card" data-category="seminar">
+                <div class="event-image">
+                    <img src="/images/events.jpg" alt="AI Seminar">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">June 22, 2023</span>
+                    <h3 class="event-title">Future of AI in Business</h3>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Conference Hall</span>
+                        <span><i class="fas fa-clock"></i> 2:00 PM - 5:00 PM</span>
+                    </div>
+                    <p class="event-description">
+                        Discover how artificial intelligence is transforming modern business operations.
+                    </p>
+                    <a href="#" class="event-btn">Learn More</a>
+                </div>
+            </div>
+            
+            <!-- Event 3 -->
+            <div class="event-card" data-category="conference">
+                <div class="event-image">
+                    <img src="/images/events.jpg" alt="Tech Conference">
+                </div>
+                <div class="event-content">
+                    <span class="event-date">July 5-7, 2023</span>
+                    <h3 class="event-title">Annual Tech Conference</h3>
+                    <div class="event-meta">
+                        <span><i class="fas fa-map-marker-alt"></i> Convention Center</span>
+                        <span><i class="fas fa-clock"></i> 9:00 AM - 6:00 PM</span>
+                    </div>
+                    <p class="event-description">
+                        Three days of inspiring talks, workshops, and networking with tech leaders.
+                    </p>
+                    <a href="#" class="event-btn">Learn More</a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <!-- footer -->
+    <footer class="footer">
+        <p>&copy; 2025 ESROIT. All rights reserved.</p>
+      </footer>
+    <script>
+        // Filter functionality
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Update active button
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                
+                const filter = this.dataset.filter;
+                const events = document.querySelectorAll('.event-card');
+                
+                events.forEach(event => {
+                    if (filter === 'all' || event.dataset.category === filter) {
+                        event.style.display = 'block';
+                    } else {
+                        event.style.display = 'none';
+                    }
+                });
+            });
+        });
+        
+        // Simple form handling
+        document.querySelector('.newsletter-form').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const email = this.querySelector('input').value;
+            alert(`Thank you for subscribing! We'll send event updates to ${email}`);
+            this.reset();
+        });
+    </script>
+</body>
+</html>
