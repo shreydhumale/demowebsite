@@ -18,7 +18,6 @@
         <div class="item" style="background-image: url(/images/robotics.jpg);">
             <div class="content">
                 <div class="name">Robotics</div>
-                <div class="des"></div>
                 <a href="/robotics.html"  target="_parent">
                     <button>See More</button>
                 </a>            
@@ -27,7 +26,6 @@
         <div class="item" style="background-image: url(/images/training3.jpg);">
             <div class="content">
                 <div class="name">Training</div>
-                <div class="des"></div>
                 <a href="/training.html" target="_parent" >
                     <button>See More</button>
                 </a>
@@ -36,7 +34,6 @@
         <div class="item" style="background-image: url(/images/projects2.jpg);">
             <div class="content">
                 <div class="name">Projects</div>
-                <div class="des"></div>
                 <a href="/projects.html" target="_parent">
                     <button>See More</button>
                 </a>
@@ -45,7 +42,6 @@
         <div class="item" style="background-image: url(/images/salesforce.jpg);">
             <div class="content">
                 <div class="name">Salesforce</div>
-                <div class="des"></div>
                 <a href="/salesforce.html" target="_parent">
                     <button>See More</button>
                 </a>            
@@ -54,7 +50,6 @@
         <div class="item" style="background-image: url(/images/iot2.jpg);">
             <div class="content">
                 <div class="name">IOT</div>
-                <div class="des"></div>
                 <a href="/iot.html" target="_parent">
                     <button>See More</button>
                 </a>            
@@ -69,43 +64,55 @@
 </div>
 
 <script>
-    const next = document.querySelector('.next');
+const next = document.querySelector('.next');
 const prev = document.querySelector('.prev');
 const slide = document.querySelector('.slide');
 
-// Manual controls (work on both desktop & mobile)
-next.addEventListener('click', showNext);
-prev.addEventListener('click', showPrev);
+function isMobile() {
+    return window.innerWidth <= 375;
+}
 
 function showNext() {
-    const items = document.querySelectorAll('.item');
-    slide.appendChild(items[0]); // move first to last
+    if (isMobile()) {
+        // Mobile: Scroll to next item
+        const itemWidth = slide.offsetWidth;
+        slide.scrollBy({ left: itemWidth, behavior: 'smooth' });
+    } else {
+        // Desktop: Move first item to end
+        const items = document.querySelectorAll('.item');
+        slide.appendChild(items[0]);
+    }
 }
 
 function showPrev() {
-    const items = document.querySelectorAll('.item');
-    slide.insertBefore(items[items.length - 1], items[0]); // move last to first
+    if (isMobile()) {
+        // Mobile: Scroll to previous item
+        const itemWidth = slide.offsetWidth;
+        slide.scrollBy({ left: -itemWidth, behavior: 'smooth' });
+    } else {
+        // Desktop: Move last item to start
+        const items = document.querySelectorAll('.item');
+        slide.insertBefore(items[items.length - 1], items[0]);
+    }
 }
 
-// 💡 Only add touch support if screen is mobile
-if (window.innerWidth <= 768) {
-    let startX = 0;
+// Manual controls
+next.addEventListener('click', showNext);
+prev.addEventListener('click', showPrev);
 
-    slide.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    });
+// Touch support for mobile
+let startX = 0;
+slide.addEventListener('touchstart', (e) => {
+    startX = e.touches[0].clientX;
+});
 
-    slide.addEventListener('touchend', (e) => {
-        const endX = e.changedTouches[0].clientX;
-        const diff = startX - endX;
-        if (Math.abs(diff) > 50) {
-            diff > 0 ? showNext() : showPrev();
-        }
-    });
-
-    // Optional: Auto-slide only on mobile
-    setInterval(showNext, 5000); // slide every 5 seconds
-}
+slide.addEventListener('touchend', (e) => {
+    const endX = e.changedTouches[0].clientX;
+    const diff = startX - endX;
+    if (Math.abs(diff) > 50) {
+        diff > 0 ? showNext() : showPrev();
+    }
+});
 
 </script>
 
