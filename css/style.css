@@ -411,14 +411,17 @@ body,html {
     .popup-toast {
       font-size: 12px;
       padding: 10px 14px;
-      left: 15px;
-      bottom: 250px;
+      bottom: 577px;
+      align-items: center;
+      left: 10px;
+      width: 373px;
+      text-align: center;
     }
   
     #visitor-counter {
       font-size: 11px;
       padding: 5px 10px;
-      bottom: 250px;
+      bottom: 450px;
       right: 8px;
     }
   
