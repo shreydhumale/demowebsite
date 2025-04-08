@@ -4,4 +4,12 @@ work on services, highlight the services in nav bar
 
 options in projects, training, news tab
 
-events popup on home page
+events popup on home page---------DONE
+
+events popup animation
+training page
+add 8-10 projects
+add new images to slider images, headline change(blinking)
+
+
+

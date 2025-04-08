@@ -24,7 +24,7 @@
                 </a>            
             </div>
         </div>
-        <div class="item" style="background-image: url(/images/training2.jpg);">
+        <div class="item" style="background-image: url(/images/training3.jpg);">
             <div class="content">
                 <div class="name">Training</div>
                 <div class="des"></div>
@@ -69,57 +69,42 @@
 </div>
 
 <script>
-    let next = document.querySelector('.next')
-    let prev = document.querySelector('.prev')
-
-    next.addEventListener('click', function(){
-        let items = document.querySelectorAll('.item')
-        document.querySelector('.slide').appendChild(items[0])
-    })
-
-    prev.addEventListener('click', function(){
-        let items = document.querySelectorAll('.item')
-        document.querySelector('.slide').prepend(items[items.length - 1])
-    })
-
-    //auto slide
+    const next = document.querySelector('.next');
+    const prev = document.querySelector('.prev');
     const slide = document.querySelector('.slide');
-    let startX = 0;
-    let endX = 0;
-
-    // Touch swipe for mobile
-    slide.addEventListener('touchstart', (e) => {
-        startX = e.touches[0].clientX;
-    });
-
-    slide.addEventListener('touchmove', (e) => {
-        endX = e.touches[0].clientX;
-    });
-
-    slide.addEventListener('touchend', () => {
-        let diff = startX - endX;
-        if (Math.abs(diff) > 50) {
-            if (diff > 0) showNext();
-            else showPrev();
-        }
-    });
-
-    // Navigation buttons
-    document.querySelector('.next')?.addEventListener('click', showNext);
-    document.querySelector('.prev')?.addEventListener('click', showPrev);
 
     function showNext() {
         const items = document.querySelectorAll('.item');
-        slide.appendChild(items[0]); // move first to end
+        slide.appendChild(items[0]); // move first to last
     }
 
     function showPrev() {
         const items = document.querySelectorAll('.item');
-        slide.insertBefore(items[items.length - 1], items[0]); // move last to front
+        slide.insertBefore(items[items.length - 1], items[0]); // move last to first
     }
 
-    // Auto slide every 4 seconds
-    setInterval(showNext, 5000);
+    // Manual controls
+    next.addEventListener('click', showNext);
+    prev.addEventListener('click', showPrev);
+
+    // Touch support (mobile swipe)
+    let startX = 0;
+    slide.addEventListener('touchstart', (e) => {
+        startX = e.touches[0].clientX;
+    });
+
+    slide.addEventListener('touchend', (e) => {
+        const endX = e.changedTouches[0].clientX;
+        const diff = startX - endX;
+        if (Math.abs(diff) > 50) {
+            diff > 0 ? showNext() : showPrev();
+        }
+    });
+
+    // Auto slide every 5s
+    setInterval(showNext, 2000);
+</script>
+
 
 </script>
 </body>
