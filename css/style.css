@@ -363,14 +363,14 @@ body,html {
     }
   
     #visitor-counter {
-      bottom: 10px;
+      bottom: 250px;
       right: 10px;
       font-size: 12px;
       padding: 6px 12px;
     }
   
     .popup-toast {
-      bottom: 20px;
+      bottom: 250px;
       left: 20px;
       font-size: 13px;
       padding: 12px 16px;
@@ -412,13 +412,13 @@ body,html {
       font-size: 12px;
       padding: 10px 14px;
       left: 15px;
-      bottom: 15px;
+      bottom: 250px;
     }
   
     #visitor-counter {
       font-size: 11px;
       padding: 5px 10px;
-      bottom: 8px;
+      bottom: 250px;
       right: 8px;
     }
   
@@ -527,7 +527,7 @@ body,html {
 @media (max-width: 768px) {
   .nav-menu {
     position: absolute;
-    top: 70px;
+    top: 60px;
     left: 0;
     right: 0;
     background: #9553b4;
@@ -546,7 +546,7 @@ body,html {
     display: block;
     position: absolute;
     right: 30px;
-    top: 20px;
+    top: 10px;
   }
 
   .nav-menu li {
