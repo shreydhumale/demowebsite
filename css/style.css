@@ -370,11 +370,19 @@ body,html {
     }
   
     .popup-toast {
-      bottom: 250px;
-      left: 20px;
-      font-size: 13px;
-      padding: 12px 16px;
+      font-size: 12px;
+      padding: 10px 14px;
+      position: fixed;
+      bottom: 577px;
+      left: 10px;
+      right: 10px;
+      text-align: center;
+      /* background-color: #f0f0f0; */
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
+    
+    
   }
   
   @media (max-width: 480px) {
@@ -411,12 +419,18 @@ body,html {
     .popup-toast {
       font-size: 12px;
       padding: 10px 14px;
+      position: fixed;
       bottom: 577px;
-      align-items: center;
       left: 10px;
-      width: 373px;
+      right: 10px;
       text-align: center;
+      /* background-color: #f0f0f0; */
+      border-radius: 4px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
+    
+    
+    
   
     #visitor-counter {
       font-size: 11px;
