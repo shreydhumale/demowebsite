@@ -70,25 +70,27 @@
 
 <script>
     const next = document.querySelector('.next');
-    const prev = document.querySelector('.prev');
-    const slide = document.querySelector('.slide');
+const prev = document.querySelector('.prev');
+const slide = document.querySelector('.slide');
 
-    function showNext() {
-        const items = document.querySelectorAll('.item');
-        slide.appendChild(items[0]); // move first to last
-    }
+// Manual controls (work on both desktop & mobile)
+next.addEventListener('click', showNext);
+prev.addEventListener('click', showPrev);
 
-    function showPrev() {
-        const items = document.querySelectorAll('.item');
-        slide.insertBefore(items[items.length - 1], items[0]); // move last to first
-    }
+function showNext() {
+    const items = document.querySelectorAll('.item');
+    slide.appendChild(items[0]); // move first to last
+}
 
-    // Manual controls
-    next.addEventListener('click', showNext);
-    prev.addEventListener('click', showPrev);
+function showPrev() {
+    const items = document.querySelectorAll('.item');
+    slide.insertBefore(items[items.length - 1], items[0]); // move last to first
+}
 
-    // Touch support (mobile swipe)
+// 💡 Only add touch support if screen is mobile
+if (window.innerWidth <= 768) {
     let startX = 0;
+
     slide.addEventListener('touchstart', (e) => {
         startX = e.touches[0].clientX;
     });
@@ -101,11 +103,12 @@
         }
     });
 
-    // Auto slide every 5s
-    setInterval(showNext, 2000);
+    // Optional: Auto-slide only on mobile
+    setInterval(showNext, 5000); // slide every 5 seconds
+}
+
 </script>
 
 
-</script>
 </body>
 </html>
