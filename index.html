@@ -28,6 +28,24 @@
     <button class="hamburger" onclick="toggleMenu()">
       &#9776;
     </button>
+    <ul class="mobile-nav">
+      <li><a href="#home">Home</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="#news">News</a></li>
+      <li><a href="events.html">Events</a></li>
+      <li><a href="training.html">Training</a></li>
+      <li><a href="projects.html">Projects</a></li>
+      <li><a href="services.html">Our Services</a></li>
+      <li class="follow-us-mobile">
+        <button class="follow-btn">Follow Us ▾</button>
+        <div class="social-links">
+          <a href="" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+          <a href="" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+          <a href="" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+        </div>
+      </li>
+    </ul>
     
     <ul class="nav-menu">
       <li><a href="#home">Home</a></li>
@@ -35,10 +53,9 @@
       <!-- Dropdown in Navbar -->
       <li class="dropdown">
         <a href="#">Services &#9662;</a>
-        <ul class="dropdown-content">
-          <!-- <li><a href="#news">News &#9662</a></li> -->
+        <ul class="dropdown-content" id="servicesDropdown">
           <!-- news dropdown -->
-          <li class="events-dropdown"><a href="#events">News &#9662</a>
+          <li class="events-dropdown"><a href="#news">News &#9662</a>
 
             <div class="events-dropdown-content">
               <div class="event-item">
@@ -58,7 +75,7 @@
           <!-- news dropdown end -->
 
           <!-- events dropdown -->
-          <li class="events-dropdown"><a href="#events">Events &#9662</a>
+          <li class="events-dropdown"><a href="events.html">Events &#9662</a>
 
             <div class="events-dropdown-content">
               <div class="event-item">
@@ -120,27 +137,7 @@
                   <div>Water Diya at Home</div>
                 </a>
               </div>
-
-
-              <!-- <div class="event-item">
-                <a href="/projects/water-diya.html">
-                  <div>Water Diya at Home</div>
-                </a>
-              </div>
-              <div class="event-item">
-                <a href="/projects/water-diya.html">
-                  <div>Water Diya at Home</div>
-                </a>
-              </div>
-              <div class="event-item">
-                <a href="/projects/water-diya.html">
-                  <div>Water Diya at Home</div>
-                </a>
-              </div> -->
-
-
             </div>
-
 
           </li>
           <!-- project dropdown end -->
@@ -264,7 +261,35 @@ function toggleMenu() {
     menu.classList.toggle('active');
   }
 
+  // for mobile menu
+function toggleMenu() {
+  const mobileNav = document.querySelector('.mobile-nav');
+  const overlay = document.querySelector('.overlay') || createOverlay();
+  
+  mobileNav.classList.toggle('active');
+  overlay.classList.toggle('active');
+}
 
+function createOverlay() {
+  const overlay = document.createElement('div');
+  overlay.className = 'overlay';
+  overlay.addEventListener('click', toggleMenu);
+  document.body.appendChild(overlay);
+  return overlay;
+}
+// document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+
+// Follow Us toggle
+document.addEventListener('DOMContentLoaded', function() {
+  const followBtn = document.querySelector('.follow-btn');
+  if (followBtn) {
+    followBtn.addEventListener('click', function(e) {
+      e.stopPropagation();
+      const socialLinks = this.nextElementSibling;
+      socialLinks.classList.toggle('active');
+    });
+  }
+});
   </script>
 </body>
 
