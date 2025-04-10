@@ -10,29 +10,64 @@
     <link rel="stylesheet" href="/css/news.css">
 </head>
 <style>
-    .container .img{
-        height: 400px;
-        width: 900px;
-        margin-top: 60px;
+    .training-section {
+        padding: 40px;
+        max-width: 1000px;
+        margin: auto;
     }
+
+    .training-section h1 {
+        font-size: 2.5rem;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+
+    .training-card {
+        background: #f0f0f0;
+        padding: 20px;
+        border-radius: 12px;
+        margin-bottom: 30px;
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .training-card img {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 15px;
+    }
+
+    .training-card h2 {
+        font-size: 1.8rem;
+        margin-bottom: 10px;
+        color: #2b3a42;
+    }
+
+    .training-card p {
+        font-size: 1rem;
+        color: #444;
+    }
+
     .btn {
-            display: inline-block;
-            padding: 0.75rem 1.5rem;
-            background: var(--accent);
-            color: rgb(207, 69, 69);
-            text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: all 0.3s;
+        display: inline-block;
+        padding: 0.75rem 1.5rem;
+        background: var(--accent);
+        color: rgb(207, 69, 69);
+        text-decoration: none;
+        border-radius: 4px;
+        font-weight: 500;
+        transition: all 0.3s;
+        margin-top: 20px;
     }
+
     .btn:hover {
-            background: #91b5b6;
-            transform: translateY(-2px);
+        background: #91b5b6;
+        transform: translateY(-2px);
     }
 </style>
 <body id="home">
-     <!--  navigation bar-->
-     <div class="navbar">
+    <!--  navigation bar-->
+    <div class="navbar">
         <img src="images/logo.png" alt="EsroIT Logo" class="logo">
         <ul class="nav-menu">
             <li><a href="index.html#home">Home</a></li>
@@ -44,46 +79,43 @@
                     <li><a href="events.html">Events</a></li>
                     <li><a href="training.html">Training</a></li>
                     <li><a href="about.html">About</a></li>
+                    <li><a href="projects.html">Projects</a></li>
                     <li><a href="services.html">Our Services</a></li>
-
                 </ul>
             </li>
         </ul>
     </div>
 
-    <!-- News Detail Content -->
-    <section class="news-detail">
-        <div class="container">
-            <!-- <a href="index.html#news" class="back-link">← Back to News</a> -->
+    <!-- New Training Section -->
+    <section class="training-section">
+        <h1>Training Programs</h1>
 
-            <img src="/images/training1.jpg" alt="" class="img">
-            <h1>About Training</h1>
-                        
-            <div class="news-content">
-                <p>Training is a program that helps employees learn specific knowledge or skills to improve performance in their current roles. Development is more expansive and focuses on employee growth and future performance rather than an immediate job role.</p>
-
-                <li>
-                    Training is a short-term reactive process meant for operatives and process.
-                </li>
-                <li>
-                    In training employees’ aim is to develop additional skills 
-                </li>
-                <li>
-                    In training, the initiative is taken by the management with the objective of meeting the present need of an employee.
-                </li>
-            </div>
+        <div class="training-card">
+            <img src="https://www.pexels.com/photo/robotic-arm-256381/">
+            <h2>Robotics Workshop</h2>
+            <p>Explore the exciting world of robotics through hands-on sessions covering sensors, automation, Arduino programming, and robot assembly.</p>
         </div>
-        <img src="/images/training-stage.jpg" alt=""> <br><br>
 
-        <a href="/index.html" >
+        <div class="training-card">
+            <img src="https://www.pexels.com/photo/3d-printer-printing-technology-256381/">
+            <h2>3D Designer Printer Workshop</h2>
+            <p>Learn the art of 3D design and printing using CAD tools and real 3D printers. Perfect for engineers, creators, and innovators.</p>
+        </div>
+
+        <div class="training-card">
+            <img src="https://www.pexels.com/photo/computer-hardware-setup-256381/">
+            <h2>Computer Hardware & Networking</h2>
+            <p>Understand the fundamentals of computer hardware components, networking basics, and troubleshooting with practical labs and demos.</p>
+        </div>
+
+        <a href="/index.html">
             <button class="btn">Back</button>
-        </a>    
-    
+        </a>
     </section>
 
     <!--  footer -->
     <footer class="footer">
         <p>&copy; 2025 ESROIT. All rights reserved.</p>
-      </footer>
+    </footer>
 </body>
 </html>

@@ -47,17 +47,20 @@ html {
 
 /* Founder Section */
 .founder-section {
-    display: flex;
-    align-items: center;
+    display: grid;
+    place-items: center;
+
     gap: 50px;
     max-width: 1000px;
-    margin-bottom: 80px;
-    margin-left: 130px;
+    margin: 0 auto;
     padding: 30px;
     background: rgb(255, 255, 255);
     border-radius: 10px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.452);
+
+    min-height: 100vh; /* ensures it fills full screen height */
 }
+
 
 .founder-image {
     flex: 0 0 300px;
@@ -122,6 +125,10 @@ html {
     padding-bottom: 5px;
     border-radius: 8px;
     border-left: 4px solid #5239af;
+    border-right: 4px solid #5239af;
+    border-top: 1px solid #5239af;
+    border-bottom: 1px solid #5239af;
+
 }
 
 .founder-qualities h4 {
@@ -137,7 +144,7 @@ html {
 }
 
 /* Responsive Design */
-@media (max-width: 768px) {
+@media (max-width: 76px) {
     .founder-section {
       display: flex;
       flex-direction: column;

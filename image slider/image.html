@@ -113,6 +113,17 @@ slide.addEventListener('touchend', (e) => {
         diff > 0 ? showNext() : showPrev();
     }
 });
+// Auto-play
+let currentIndex = 0;
+const interval = //3000; // 3 seconds
+function autoPlay() {
+    showNext();
+    currentIndex++;
+    if (currentIndex >= slide.children.length) {
+        currentIndex = 0;
+    }
+}
+setInterval(autoPlay, interval);
 
 </script>
 
