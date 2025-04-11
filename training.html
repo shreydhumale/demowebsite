@@ -6,29 +6,59 @@
     <title>ESRO IT - Training</title>
     <link rel="icon" href="/images/logo-removebg-preview.png">
     <link rel="stylesheet" href="/css/style.css">
-    <link rel="stylesheet" href="/css/about.css">
-    <link rel="stylesheet" href="/css/service.css">
-    <link rel="stylesheet" href="/css/news.css">
 </head>
 <style>
+     :root {
+            --primary: #2f60a1;
+            --secondary: #f5f7fa;
+            --accent: #508acc;
+            --text: #333;
+            --light-gray: #e9ecef;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--secondary);
+            color: var(--text);
+        }
     .training-section {
         padding: 40px;
         max-width: 1000px;
         margin: auto;
     }
 
-    .training-section h1 {
+    /* .training-section h1 {
         font-size: 2.5rem;
         margin-bottom: 30px;
         text-align: center;
-    }
+    } */
 
+    .events-header {
+            background: linear-gradient(135deg, var(--primary) 0%, #7e9bc5 100%);
+            color: white;
+            text-align: center;
+            padding: 80px 20px;
+            margin-bottom: 40px;
+        }
+        
+        .events-header h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .events-header p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+        }
     .training-card {
         background: #f0f0f0;
         padding: 20px;
         border-radius: 12px;
         margin-bottom: 30px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.339);
     }
 
     .training-card img {
@@ -41,7 +71,7 @@
     .training-card h2 {
         font-size: 1.8rem;
         margin-bottom: 10px;
-        color: #2b3a42;
+        color: var(--primary);
     }
 
     .training-card p {
@@ -88,11 +118,14 @@
     </div>
 
     <!-- New Training Section -->
-    <section class="training-section">
+    <section class="events-header">
         <h1>Training Programs</h1>
+        <p>Practical training programs to build real-world tech skills and boost your career.</p>
+    </section>
+    <section class="training-section">
 
         <div class="training-card">
-            <img src="https://www.pexels.com/photo/robotic-arm-256381/">
+            <img src="images/training/training-robotics workshop.jpeg">
             <h2>Robotics Workshop</h2>
             <p>Explore the exciting world of robotics through hands-on sessions covering sensors, automation, Arduino programming, and robot assembly.</p>
         </div>
@@ -109,9 +142,7 @@
             <p>Understand the fundamentals of computer hardware components, networking basics, and troubleshooting with practical labs and demos.</p>
         </div>
 
-        <a href="/index.html">
-            <button class="btn">Back</button>
-        </a>
+      
     </section>
 
     <!--  footer -->

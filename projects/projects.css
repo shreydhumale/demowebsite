@@ -1,7 +1,7 @@
 :root {
     --primary: #2a4365;
     --secondary: #f5f7fa;
-    --accent: #38b2ac;
+    --accent: #2f60a1;
     --text: #1e293b;
     --light-gray: #e2e8f0;
 }
@@ -100,7 +100,7 @@ body {
 }
 
 .btn:hover {
-    background: #2c7a7b;
+    background: #3742606d;
     transform: translateY(-2px);
 }
 
