@@ -36,12 +36,13 @@ body,html {
     align-items: center;
     padding: 15px 20px;
     background: linear-gradient(45deg, white, #ffffff, #ae56c9, #9553b4);
+    background: white;
     position: fixed; 
     top: 0;
     left: 0; 
     width: 100%; 
     z-index: 1000; 
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.137);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.294);
 }
 
 .navbar .brand {
@@ -72,15 +73,16 @@ body,html {
 
 .nav-menu a {
     text-decoration: none;
-    color: white;
+    color: black;
     font-size: 16px;
     padding: 8px 12px;
     display: block;
     transition: 0.3s;
+    font-weight: 500;
 }
 
 .nav-menu a:hover {
-    background: #162336;
+    background: #2d343f50;
     border-radius: 5px;
 }
 
@@ -97,7 +99,8 @@ body,html {
     position: absolute;
     top: 100%;
     left: 0;
-    background: rgb(181, 147, 227);
+    /* background: rgb(181, 147, 227); */
+    background: white;
     min-width: 190px;
     border-radius: 5px;
     box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.2);
@@ -125,7 +128,7 @@ body,html {
   }
   
   .dropdown-content a:hover {
-    background: #b86dd8;
+    background: #2d343f50;
     border-radius: 4px;
   }
   
@@ -142,7 +145,7 @@ body,html {
   .events-dropdown-content {
     display: none;
     position: absolute;
-    background: rgb(161, 164, 198);
+    background: rgb(255, 255, 255);
     width: max-content;
     min-width: 350px;
     max-width: 80vw;
@@ -167,7 +170,7 @@ body,html {
   
   .event-item {
     padding: 10px;
-    border-bottom: 1px solid #e2e8f0;
+    border-bottom: 1px solid #a4a6a8;
     white-space: normal;
     box-sizing: border-box;
     transition: background 0.3s;
@@ -185,7 +188,7 @@ body,html {
   
   .event-date {
     font-weight: 600;
-    color: #284789;
+    color: #1152dd;
     font-size: 14px;
     margin-bottom: 4px;
   }
@@ -364,8 +367,8 @@ body,html {
     padding: 10px 20px;
     font-weight: 600;
     background-color: transparent;
-    border: 2px solid #fff;
-    color: #fff;
+    border: 2px solid #0b0b0b;
+    color: #000000;
     border-radius: 50px;
     transition: all 0.4s ease;
     font-size: 16px;
