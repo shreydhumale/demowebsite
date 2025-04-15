@@ -8,57 +8,47 @@
     <style>
       /* Animated gradient background */
 body {
-    background: linear-gradient(-45deg, #c0c5ff, #dcd2f7, #b6b6f5, #f5d5ec);
+    /* background: linear-gradient(-45deg, #c0c5ff, #dcd2f7, #b6b6f5, #f5d5ec); */
     background-size: 400% 400%;
-    animation: gradientBG 15s ease infinite;
+    animation: gradientBG 1s ease ;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    padding: 20px;
+    /* padding: 20px; */
     margin: 0;
+    height: 100%;
 }
 
-@keyframes gradientBG {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-}
 
 /* Form styling */
 .feedback-form {
     max-width: 500px;
     margin: 0 auto;
     background: rgba(255, 255, 255, 0.9);
-    border-radius: 16px;
+    border-radius: 10px;
     padding: 30px;
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
     backdrop-filter: blur(6px);
     animation: fadeInUp 0.8s ease forwards;
 }
 
-/* Smooth fade-in animation */
-@keyframes fadeInUp {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
 h1 {
     text-align: center;
-    color: #4b2994;
+    color: #ddd9e4;
     margin-bottom: 25px;
     font-size: 28px;
 }
 
+h2{
+    text-align: center;
+    color: #434343;
+    margin-bottom: 25px;
+    font-size: 28px;
+}
 .form-group {
     margin-bottom: 18px;
 }
 
 .form-control {
-    width: 100%;
+    width: 90%;
     padding: 12px 14px;
     border: 1px solid #ccc;
     border-radius: 10px;
@@ -102,7 +92,7 @@ h1 {
 
 /* Submit button */
 .btn-submit {
-    background: linear-gradient(135deg, #8e6ce6, #6a36c6);
+    background: linear-gradient(135deg, #9f9f9f, #505050);
     color: white;
     border: none;
     padding: 12px 20px;
@@ -116,7 +106,7 @@ h1 {
 }
 
 .btn-submit:hover {
-    background: linear-gradient(135deg, #6a36c6, #8e6ce6);
+    background: linear-gradient(135deg, #7d7a83, #79777d);
     box-shadow: 0 8px 22px rgba(110, 72, 180, 0.5);
 }
 
@@ -127,11 +117,11 @@ h1 {
 
 /* Header block */
 .header-content {
-    background: linear-gradient(135deg, #c3a3ff, #6c63ff);
+    /* background: linear-gradient(135deg, #c3a3ff, #6c63ff); */
+    background-image: url(/images/feedback-header.jpg);
     color: white;
     text-align: center;
     padding: 25px;
-    border-radius: 12px;
     margin-bottom: 20px;
     animation: fadeInUp 1s ease forwards;
 }
@@ -145,7 +135,7 @@ h1 {
             <p>We value your opinion and would love to hear from you</p>
         </div>
     </header>
-    <h1>Feedback Form</h1>
+    <h2>Feedback Form</h2>
     <form id="feedbackForm" class="feedback-form">
         <div class="form-group">
             <input type="text" id="firstName" placeholder="First Name" class="form-control" required>

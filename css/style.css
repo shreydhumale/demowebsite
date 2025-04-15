@@ -262,6 +262,9 @@ body,html {
   }
   
   @media (max-width: 768px) {
+    .navbar .logo {
+      margin-left: 10px;
+    }
     .showcase .slider {
       height: auto;
       padding: 0px 0;
@@ -300,60 +303,6 @@ body,html {
     
   }
   
-  /* @media (max-width: 360px) {
-    .showcase-content h1 {
-      font-size: 28px;
-    }
-  
-    .showcase-content p {
-      font-size: 14px;
-    }
-  
-    .navbar .brand {
-      font-size: 22px;
-    }
-  
-    .navbar .logo {
-      max-width: 60px;
-      margin-left: 10px;
-    }
-  
-    .nav-menu a {
-      font-size: 14px;
-    }
-  
-    .dropdown-content a {
-      font-size: 14px;
-    }
-    .event-item{
-      display: none;
-    }
-    .event-date {
-      font-size: 12px;
-    }
-  
-    .popup-toast {
-      font-size: 12px;
-      padding: 10px 14px;
-      bottom: 577px;
-      top: 7%;
-      left: 10px;
-      right: 10px;
-      height: 5%;
-      text-align: center;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
-    }
-    
-    
-  
-    .footer {
-      font-size: 13px;
-      padding: 12px 8px;
-    }
-  }
-   */
- 
   /* ---------- */
   /* social media */
   .follow-us-dropdown {
