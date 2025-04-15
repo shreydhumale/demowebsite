@@ -146,7 +146,7 @@ body,html {
   .events-dropdown-content {
     display: none;
     position: absolute;
-    background: rgb(255, 255, 255);
+    background: white;
     width: max-content;
     min-width: 350px;
     max-width: 80vw;
@@ -170,7 +170,7 @@ body,html {
   }
   
   .event-item {
-    padding: 10px;
+    padding: 5px;
     border-bottom: 1px solid #a4a6a8;
     white-space: normal;
     box-sizing: border-box;
@@ -191,7 +191,6 @@ body,html {
     font-weight: 600;
     color: #1152dd;
     font-size: 14px;
-    margin-bottom: 4px;
   }
   
   /* Toast Popup - Permanent */
