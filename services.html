@@ -42,7 +42,7 @@
       <img src="images/logo.png" alt="">
       <li><a href="index.html">HOME</a></li>
       <li><a href="about.html">ABOUT</a></li>
-      <li><a href="#news">NEWS</a></li>
+      <li><a href="index.html#news">NEWS</a></li>
       <li><a href="events.html">EVENTS</a></li>
       <li><a href="training.html">TRAINING</a></li>
       <li><a href="projects.html">PROJECTS</a></li>
@@ -68,7 +68,7 @@
         <a href="#">SERVICES &#9662;</a>
         <ul class="dropdown-content" id="servicesDropdown">
           <!-- news dropdown -->
-          <li class="events-dropdown"><a href="#news">NEWS &#9662</a>
+          <li class="events-dropdown"><a href="index.html#news">NEWS &#9662</a>
 
             <div class="events-dropdown-content">
               <div class="event-item">
@@ -420,19 +420,8 @@
   </div>
 </footer>
 
-  <script>
-    document.querySelectorAll(".read-more").forEach((button) => {
-      button.addEventListener("click", () => {
-        button.classList.toggle("active");
-        const box = button.nextElementSibling;
-        box.style.display = box.style.display === "block" ? "none" : "block";
-      });
-    });
+<script src="script.js"></script>
 
-
-
-
-  </script>
 </body>
 
 </html>

@@ -85,3 +85,32 @@ document.addEventListener("DOMContentLoaded", function () {
       }
     });
 
+    // for mobile menu
+    function toggleMenu() {
+      const mobileNav = document.querySelector('.mobile-nav');
+      const overlay = document.querySelector('.overlay') || createOverlay();
+
+      mobileNav.classList.toggle('active');
+      overlay.classList.toggle('active');
+    }
+
+    function createOverlay() {
+      const overlay = document.createElement('div');
+      overlay.className = 'overlay';
+      overlay.addEventListener('click', toggleMenu);
+      document.body.appendChild(overlay);
+      return overlay;
+    }
+    // document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
+
+    // Follow Us toggle
+    document.addEventListener('DOMContentLoaded', function () {
+      const followBtn = document.querySelector('.follow-btn');
+      if (followBtn) {
+        followBtn.addEventListener('click', function (e) {
+          e.stopPropagation();
+          const socialLinks = this.nextElementSibling;
+          socialLinks.classList.toggle('active');
+        });
+      }
+    });
