@@ -14,7 +14,7 @@ html, body {
     position: absolute;
     top: 50%;
     left: 50%;
-    transform: translate(-50%, -50%);
+    transform: translate(-50%,-50%);
     width: 100%;
     max-width: 100%;
     height: 100vh;
@@ -27,7 +27,7 @@ html, body {
     height: 300px;
     position: absolute;
     top: 50%;
-    transform: translate(0, -50%);
+    transform: translate(50%, -50%);
     border-radius: 20px;
     box-shadow: 0 30px 50px #505050;
     background-position: 50% 50%;
@@ -150,47 +150,7 @@ html, body {
     background-color: rgba(0, 0, 0, 0.8);
 }
 
-/* @media (max-width: 768px) {
-    .container {
-        margin-top: 0;
-    }
 
-    .container .slide .item {
-        width: 150px;
-        height: 250px;
-    }
-
-    .slide .item:nth-child(3) {
-        left: 60%;
-    }
-
-    .slide .item:nth-child(4) {
-        left: calc(50% + 180px);
-    }
-
-    .slide .item:nth-child(5) {
-        left: calc(50% + 360px);
-    }
-
-    .slide .item:nth-child(n + 6) {
-        left: calc(50% + 540px);
-    }
-
-    .item .content {
-        left: 20px;
-        width: 85%;
-    }
-
-    .content .name {
-        font-size: 28px;
-    }
-
-    .navigation button {
-        width: 35px;
-        height: 30px;
-        margin: 0 10px;
-    }
-} */
 
 @media (max-width: 350px) {
 
