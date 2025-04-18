@@ -181,6 +181,7 @@ html, body {
         background-position: center;
         position: relative;
         border-radius: 0;
+        scroll-behavior: smooth;
     }
 
     .slide .item .content {
