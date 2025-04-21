@@ -3,66 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESRO It - Robotics Workshop</title>
+    <title>ESRO It - home-images</title>
 
     <link rel="stylesheet" href="/css/style.css">
 
 </head>
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 .slider-container {
     position: relative;
-    width: 800px;
-    height: 450px;
+    width: 100vw;
+    height: 100vh;
     overflow: hidden;
-    margin: 50px auto;
-    border-radius: 0;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.708);
+    margin: 0 auto;
 }
 
 .slider {
     display: flex;
     transition: transform 0.6s ease-in-out;
-    width: fit-content;
+    height: 100%;
 }
 
-.slider img {
-    width: 800px;
-    height: 450px;
+.slide {
+    position: relative;
+    min-width: 100vw;
+    height: 100vh;
+}
+
+.slide img {
+    width: 100%;
+    height: 100%;
     object-fit: cover;
+    display: block;
 }
 
+.slide-caption {
+    position: absolute;
+    bottom: 15%;
+    left: 5%; /* moved further left */
+    text-align: left; /* aligned left */
+    color: white;
+    background-color: rgba(0, 0, 0, 0.621);
+    padding: 2rem;
+    border-radius: 5px;
+    max-width: 35%;
+}
+
+.slide-caption h3 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.559);
+}
+
+.slide-caption p {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+}
+
+
+.see-more {
+    background-color: #4c6daf;
+    color: white;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+.see-more:hover {
+    background-color: #3b55b3;
+    transform: scale(1.05);
+}
 
 .slider-btn {
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(255,255,255,0.7);
+    background-color: rgba(255, 255, 255, 0.7);
     border: none;
     font-size: 2rem;
     padding: 10px 20px;
     cursor: pointer;
-    z-index: 2;
+    z-index: 10;
     border-radius: 50%;
-    transition: background 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 .slider-btn:hover {
-    background-color: rgba(255,255,255,1);
+    background-color: rgba(255, 255, 255, 1);
+    transform: translateY(-50%) scale(1.1);
 }
 
 .prev {
-    left: 10px;
+    left: 20px;
 }
 
 .next {
-    right: 10px;
+    right: 20px;
 }
-@media screen and (max-width: 768px) {
-    .slider-container {
-        width: 100%;
-        height: 300px;
-    }}
 
+/* Mobile responsiveness */
+@media screen and (max-width: 768px) {
+    .slide-caption {
+        left: 5%;
+        bottom: 10%;
+        max-width: 90%;
+        padding: 1rem;
+    }
+    
+    .slide-caption h3 {
+        font-size: 1.5rem;
+    }
+    .slide-caption p {
+        font-size: 0.9rem;
+    }
+    .see-more {
+        padding: 10px 20px;
+        font-size: 1rem;
+    }
+    
+    .slider-btn {
+        font-size: 1.5rem;
+        padding: 8px 16px;
+    }
+}
 </style>
 <body>
       <!-- Mobile Navigation Bar -->
@@ -284,15 +356,50 @@
 <!-- image gallery -->
 <div class="slider-container" id="slider-container">
     <div class="slider" id="slider">
-        <img src="/Events and workshop/images/image1.jpeg" alt="">
-        <img src="/Events and workshop/images/image2.jpeg" alt="">
-        <img src="/Events and workshop/images/image3.jpeg" alt="">
-        <img src="/Events and workshop/images/image4.jpeg" alt="">
-        <img src="/Events and workshop/images/image5.jpeg" alt="">
-        <img src="/Events and workshop/images/image6.jpeg" alt="">
-        <img src="/Events and workshop/images/image7.jpeg" alt="">
-        <img src="/Events and workshop/images/image8.jpeg" alt="">
+        <div class="slide">
+            <img src="/images/training3.jpg" alt="">
+            <div class="slide-caption">
+                <h3>Training Programs</h3>
+                <p>Our training program helps employees learn specific knowledge or skills to improve performance in their current roles. Development is more expansive and focuses on employee growth and future performance rather than an immediate job role.</p>
 
+                <button class="see-more">See More</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/images/robotics.jpg" alt="">
+            <div class="slide-caption">
+                <h3>Robotics</h3>
+                <p>Robotics is a branch of engineering that involves the conception, design, manufacture and operation of robots. The objective of the robotics field is to create intelligent machines that can assist humans in a variety of ways.</p>
+
+                <button class="see-more">See More</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/images/projects2.jpg" alt="">
+            <div class="slide-caption">
+                <h3>Our Projects</h3>
+                <p>Explore our diverse portfolio of real-world projects that showcase creativity, problem-solving, and cutting-edge technology.</p>
+                <button class="see-more">See More</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/images/iot2.jpg" alt="">
+            <div class="slide-caption">
+                <h3>IoT Solutions</h3>
+                <p>The Internet of things (IoT) is a system of interrelated computing devices, mechanical and digital machines, objects, animals or people that are provided with unique identifiers ( UIDs ) and the ability to transfer data over a network without requiring human-to-human or human-to-computer interaction. </p>
+
+                <button class="see-more">See More</button>
+            </div>
+        </div>
+        <div class="slide">
+            <img src="/images/salesforce.jpg" alt="">
+            <div class="slide-caption">
+                <h3>Salesforce</h3>
+                <p>Salesforce CRM is a cloud-based platform which helps you to manage the sales, marketing, lead generation, customer service and many other functions.</p>
+
+                <button class="see-more">See More</button>
+            </div>
+        </div>
     </div>
     <button class="slider-btn prev" id="prevBtn">&#10094;</button>
     <button class="slider-btn next" id="nextBtn">&#10095;</button>
@@ -365,7 +472,7 @@
 const prevBtn = document.getElementById('prevBtn');
 const nextBtn = document.getElementById('nextBtn');
 const totalSlides = slider.children.length;
-const slideWidth = 800;
+const slideWidth = slider.clientWidth;
 let index = 0;
 
 function showSlide(i) {
@@ -408,13 +515,13 @@ let autoSlide = setInterval(() => {
     } else {
         clearInterval(autoSlide);
     }
-}, 3000);
+}, 300000);
 
 // Pause on hover
 slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
 slider.parentElement.addEventListener('mouseleave', () => {
     if (index < totalSlides - 1) {
-        autoSlide = setInterval(nextSlide, 3000);
+        autoSlide = setInterval(nextSlide, 300000);
     }
 });
 
@@ -433,6 +540,45 @@ updateButtonState();
 
 </script>
 
-    
+<!-- <script>
+    document.addEventListener('DOMContentLoaded', function() {
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const slides = document.querySelectorAll('.slider img');
+    let currentIndex = 0;
+    const slideCount = slides.length;
+
+    function updateSlider() {
+        slider.style.transform = `translateX(-${currentIndex * 100}vw)`;
+    }
+
+    function nextSlide() {
+        currentIndex = (currentIndex + 1) % slideCount;
+        updateSlider();
+    }
+
+    function prevSlide() {
+        currentIndex = (currentIndex - 1 + slideCount) % slideCount;
+        updateSlider();
+    }
+
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+
+    // Optional: Auto-advance slides
+    let slideInterval = setInterval(nextSlide, 5000);
+
+    // Pause on hover
+    slider.addEventListener('mouseenter', () => clearInterval(slideInterval));
+    slider.addEventListener('mouseleave', () => {
+        slideInterval = setInterval(nextSlide, 5000);
+    });
+
+    // Handle window resize
+    window.addEventListener('resize', updateSlider);
+});
+</script>
+     -->
 </body>
 </html>

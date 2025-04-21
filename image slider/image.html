@@ -74,10 +74,11 @@ function isMobile() {
 
 function showNext() {
     if (isMobile()) {
-        const item = slide.querySelector('.item');
-        const itemWidth = item.offsetWidth;
+        // Mobile: Scroll to next item
+        const itemWidth = slide.offsetWidth;
         slide.scrollBy({ left: itemWidth, behavior: 'smooth' });
     } else {
+        // Desktop: Move first item to end
         const items = document.querySelectorAll('.item');
         slide.appendChild(items[0]);
     }
@@ -85,25 +86,24 @@ function showNext() {
 
 function showPrev() {
     if (isMobile()) {
-        const item = slide.querySelector('.item');
-        const itemWidth = item.offsetWidth;
+        // Mobile: Scroll to previous item
+        const itemWidth = slide.offsetWidth;
         slide.scrollBy({ left: -itemWidth, behavior: 'smooth' });
     } else {
+        // Desktop: Move last item to start
         const items = document.querySelectorAll('.item');
         slide.insertBefore(items[items.length - 1], items[0]);
     }
 }
 
+// Manual controls
 next.addEventListener('click', showNext);
 prev.addEventListener('click', showPrev);
 
-// --- Touch Swipe ---
+// Touch support for mobile
 let startX = 0;
-let autoPlayInterval;
-
 slide.addEventListener('touchstart', (e) => {
     startX = e.touches[0].clientX;
-    clearInterval(autoPlayInterval); // Pause autoplay on swipe
 });
 
 slide.addEventListener('touchend', (e) => {
@@ -112,17 +112,18 @@ slide.addEventListener('touchend', (e) => {
     if (Math.abs(diff) > 50) {
         diff > 0 ? showNext() : showPrev();
     }
-    autoPlayInterval = setInterval(autoPlay, interval); // Resume autoplay
 });
-
-// --- Auto Slide ---
-const interval = 3000;
-
+// Auto-play
+let currentIndex = 0;
+const interval = 3000; // 3 seconds
 function autoPlay() {
     showNext();
+    currentIndex++;
+    if (currentIndex >= slide.children.length) {
+        currentIndex = 0;
+    }
 }
-
-autoPlayInterval = setInterval(autoPlay, interval);
+setInterval(autoPlay, interval);
 
 </script>
 
