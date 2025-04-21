@@ -114,3 +114,75 @@ document.addEventListener("DOMContentLoaded", function () {
         });
       }
     });
+
+    // image slider home
+    const slider = document.getElementById('slider');
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+    const totalSlides = slider.children.length;
+    const slideWidth = slider.clientWidth;
+    let index = 0;
+    
+    function showSlide(i) {
+        slider.style.transform = `translateX(-${i * slideWidth}px)`;
+        updateButtonState();
+    }
+    
+    // Stop at last slide
+    function nextSlide() {
+        if (index < totalSlides - 1) {
+            index++;
+            showSlide(index);
+        } else {
+            clearInterval(autoSlide); // Optional: Stop auto-slide at the last slide
+        }
+    }
+    
+    // Stop at first slide
+    function prevSlide() {
+        if (index > 0) {
+            index--;
+            showSlide(index);
+        }
+    }
+    
+    // Disable/enable buttons accordingly
+    function updateButtonState() {
+        prevBtn.disabled = index === 0;
+        nextBtn.disabled = index === totalSlides - 1;
+    }
+    
+    // Button Clicks
+    nextBtn.addEventListener('click', nextSlide);
+    prevBtn.addEventListener('click', prevSlide);
+    
+    // Auto Slide
+    let autoSlide = setInterval(() => {
+        if (index < totalSlides - 1) {
+            nextSlide();
+        } else {
+            clearInterval(autoSlide);
+        }
+    }, 300000);
+    
+    // Pause on hover
+    slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
+    slider.parentElement.addEventListener('mouseleave', () => {
+        if (index < totalSlides - 1) {
+            autoSlide = setInterval(nextSlide, 300000);
+        }
+    });
+    
+    // Swipe Support
+    let startX = 0;
+    
+    slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+    slider.addEventListener('touchend', e => {
+        let endX = e.changedTouches[0].clientX;
+        if (startX - endX > 50) nextSlide();
+        else if (endX - startX > 50) prevSlide();
+    });
+    
+    // Initial button state
+    updateButtonState();
+    //image slider end
