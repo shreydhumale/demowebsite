@@ -163,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function () {
         } else {
             clearInterval(autoSlide);
         }
-    }, 300000);
+    }, 3000);
     
     // Pause on hover
     slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));

@@ -6,30 +6,41 @@
     <title>Feedback Form with Star Rating</title>
     <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
     <style>
-      /* Animated gradient background */
 body {
-    /* background: linear-gradient(-45deg, #c0c5ff, #dcd2f7, #b6b6f5, #f5d5ec); */
-    background-size: 400% 400%;
     animation: gradientBG 1s ease ;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    /* padding: 20px; */
     margin: 0;
     height: 100%;
+    overflow: hidden;
 }
 
-
+.feedback-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 40px;
+    height: 100vh;
+}
 /* Form styling */
 .feedback-form {
-    max-width: 500px;
-    margin: 0 auto;
+    width: 40%;
+    height: auto;
+    margin-bottom: 15%;
     background: rgba(255, 255, 255, 0.9);
     border-radius: 10px;
-    padding: 30px;
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+    padding: 50px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.357);
     backdrop-filter: blur(6px);
     animation: fadeInUp 0.8s ease forwards;
 }
+.feedback-image {
+    width: 50%;
+    height: 70%;
+    border-radius: 10px;
+    object-fit: contain;
+    margin-bottom: 15%;
 
+}
 h1 {
     text-align: center;
     color: #ddd9e4;
@@ -50,6 +61,15 @@ h2{
 .form-control {
     width: 90%;
     padding: 12px 14px;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    font-size: 15px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+.form-control-feedback{
+    width: 90%;
+    height: 100px;
+    padding: 12px 24px;
     border: 1px solid #ccc;
     border-radius: 10px;
     font-size: 15px;
@@ -126,6 +146,31 @@ h2{
     animation: fadeInUp 1s ease forwards;
 }
 
+@media screen and (max-width: 768px) {
+    .feedback-container {
+        display: block; /* stack elements vertically */
+        padding: 20px;
+        height: auto; /* allow height to adjust based on content */
+    }
+
+    .feedback-form {
+        width: 90%;
+        margin: 0 auto 20px auto; /* center form and give bottom margin */
+        border-radius: 8px;
+        padding: 20px;
+    }
+
+    .feedback-image {
+        display: none; /* hide image on small screens */
+    }
+
+    .form-control::placeholder {
+        font-size: 0.8rem;
+    }
+}
+
+
+
     </style>
 </head>
 <body>
@@ -135,7 +180,8 @@ h2{
             <p>We value your opinion and would love to hear from you</p>
         </div>
     </header>
-    <h2>Feedback Form</h2>
+    <div class="feedback-container">
+
     <form id="feedbackForm" class="feedback-form">
         <div class="form-group">
             <input type="text" id="firstName" placeholder="First Name" class="form-control" required>
@@ -165,15 +211,17 @@ h2{
         </div>
         
         <div class="form-group">
-            <textarea id="feedbackText" placeholder="Your feedback" class="form-control" rows="5" required></textarea>
+            <textarea id="feedbackText" placeholder="Your feedback" class="form-control-feedback" rows="5" required></textarea>
         </div>
         <button type="submit" class="btn-submit" id="submitBtn">Submit Feedback</button>
     </form>
+    <img src="/images/feedback.jpg" alt="" class="feedback-image">
+    </div>
 
     <script>
         // Initialize EmailJS
         (function() {
-            emailjs.init('Ano1AEqyh29pYyeAW'); // Replace with your actual public key
+            emailjs.init('Ano1AEqyh29pYyeAW'); 
         })();
 
         // Star Rating Functionality
