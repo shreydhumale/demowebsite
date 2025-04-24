@@ -101,7 +101,6 @@ document.addEventListener("DOMContentLoaded", function () {
       document.body.appendChild(overlay);
       return overlay;
     }
-    // document.body.style.overflow = mobileNav.classList.contains('active') ? 'hidden' : '';
 
     // Follow Us toggle
     document.addEventListener('DOMContentLoaded', function () {
@@ -134,7 +133,7 @@ document.addEventListener("DOMContentLoaded", function () {
             index++;
             showSlide(index);
         } else {
-            clearInterval(autoSlide); // Optional: Stop auto-slide at the last slide
+            clearInterval(autoSlide); 
         }
     }
     
@@ -169,7 +168,7 @@ document.addEventListener("DOMContentLoaded", function () {
     slider.parentElement.addEventListener('mouseenter', () => clearInterval(autoSlide));
     slider.parentElement.addEventListener('mouseleave', () => {
         if (index < totalSlides - 1) {
-            autoSlide = setInterval(nextSlide, 300000);
+            autoSlide = setInterval(nextSlide, 2500);
         }
     });
     

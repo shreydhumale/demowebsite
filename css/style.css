@@ -225,6 +225,22 @@ body,html {
     text-decoration: underline;
   }
   
+  .popup-toast-mobile {
+    position: absolute;
+    bottom: 565px;
+    left: 15px; /* changed from right to left */
+    background-color: rgb(146, 97, 211);
+    color: #0c0c0c;
+    padding: 15px 20px;
+    border-radius: 8px;
+    box-shadow: 0 8px 16px rgba(30, 15, 65, 0.709);
+    font-family: 'Segoe UI', sans-serif;
+    font-size: 14px;
+    z-index: 9999;
+    animation: blink 1s linear infinite;
+    display: none; 
+  }
+  
   @keyframes slideInLeft {
     from {
       transform: translateX(-50px);
@@ -283,25 +299,15 @@ body,html {
     .showcase-content p {
       font-size: 16px;
     }
-
-  
     .popup-toast {
       display: none;
-      font-size: 12px;
-      padding: 10px 14px;
-      bottom: 577px;
-      left: 10px;
-      right: 10px;
-      top: 6%;
-      height: 5%;
-      text-align: center;
-      border-radius: 4px;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
-    
-    
   }
-  
+  @media (max-width: 768px) {
+    .popup-toast-mobile {
+      display: block;
+    }
+  }
   /* ---------- */
   /* social media */
   .follow-us-dropdown {

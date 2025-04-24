@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ESRO IT - Raspberry Pi 3 Model B+</title>
+    <link rel="icon" href="/images/logo-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/projects/projects.css">
+    
+</head>
+<body>
+    <div class="navbar">
+        <img src="/images/logo.png" alt="EsroIT Logo" class="logo">
+        <ul class="nav-menu">
+            <li><a href="/index.html#home">Home</a></li>
+            <li><a href="/about.html">About</a></li>
+            <li class="dropdown">
+                <a href="#">Services &#9662;</a>
+                <ul class="dropdown-content">
+                    <li><a href="/index.html#news">News</a></li>
+                    <li><a href="/events.html">Events</a></li>
+                    <li><a href="/training.html">Training</a></li>
+                    <li><a href="/about.html">About</a></li>
+                    <li><a href="/projects.html">Projects</a></li>
+                    <li><a href="/services.html">Our Services</a></li>
+                </ul>
+            </li>
+        </ul>
+    </div>
+
+    <div class="container">
+        <div class="project-header">
+            <h1 class="project-title">Bluetooth Controlled LED with HC-05</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar-alt"></i> Published: April 24, 2025</span>
+                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Bluetooth, Arduino, IoT</span>
+            </div>
+            <img src="/images/projects/project9.jpg" alt="Bluetooth Controlled LED" class="project-image">
+        </div>
+    
+        <div class="project-content">
+            <div class="project-section">
+                <h2>Introduction</h2>
+                <p>
+                    This project demonstrates how to control an LED using Bluetooth communication. We’ll be using an Arduino board and an HC-05 Bluetooth module to receive commands from a smartphone app and switch the LED on or off. It’s a great starter project for learning wireless control and IoT basics.
+                </p>
+                <p>
+                    The project involves setting up serial communication between the Bluetooth module and Arduino, and using a mobile app to send simple ON/OFF commands. When a command is received, the Arduino turns the LED on or off based on the command.
+                </p><br>
+                <span style="font-weight: bold;">Circuit Diagram</span> <br><br>
+                <img src="/images/projects/bluetooth-led-circuit.jpg" alt="Bluetooth LED Control Circuit" class="project-schematic">
+            </div>
+    
+            <div class="project-section">
+                <h2>Components Required</h2>
+                <div class="components-list">
+                    <div class="component-card">
+                        <h3>Arduino Uno ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Bluetooth Module HC-05 ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>LED ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>220Ω Resistor ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Breadboard and Jumper Wires</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Smartphone with Bluetooth Controller App</h3>
+                    </div>
+                </div>
+            </div>
+    
+            <div class="project-section">
+                <h2> SOURCE CODE </h2>
+                <div class="code-block">
+                    <pre><code class="language-cpp">
+    // Bluetooth LED Control using HC-05 and Arduino
+    char data = 0;
+    int ledPin = 13;
+    
+    void setup() {
+      pinMode(ledPin, OUTPUT);
+      Serial.begin(9600); // HC-05 default baud rate
+    }
+    
+    void loop() {
+      if (Serial.available()) {
+        data = Serial.read();
+        if (data == '1') {
+          digitalWrite(ledPin, HIGH); // LED ON
+        } else if (data == '0') {
+          digitalWrite(ledPin, LOW); // LED OFF
+        }
+      }
+    }
+                    </code></pre>
+                </div>
+            </div>
+    
+            <div class="project-section">
+                <h2>Project Image</h2>
+                <img src="/images/projects/bluetooth-led-project-image.jpg" alt="Bluetooth LED Project Demo" class="project-image">
+            </div>
+        </div>
+    </div>
+    
+    
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+        <!-- footer -->
+   <footer style="background-color: #333333; color: #ffffff; padding: 50px 20px; font-family: 'Segoe UI', sans-serif;">
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+      
+      <!-- About -->
+      <div style="flex: 1; min-width: 220px;">
+        <h3 style="margin-bottom: 15px;">ESRO IT</h3>
+        <p style="line-height: 1.6; color: #cccccc;">
+          With our innovative and insightful technology, we strive to enhance our users every day experiences.      </p>
+      </div>
+  
+      <!-- Navigation -->
+      <div style="flex: 1; min-width: 220px;">
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0; line-height: 2;">
+          <li><a href="/about.html" style="color: #cccccc; text-decoration: none;">About Us</a></li>
+          <li><a href="/services.html" style="color: #cccccc; text-decoration: none;">Services</a></li>
+          <li><a href="/events.html" style="color: #cccccc; text-decoration: none;">Events</a></li>
+          <li><a href="#feedback" style="color: #cccccc; text-decoration: none;">Feedback</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact -->
+      <div style="flex: 1; min-width: 220px;">
+        <h4 style="margin-bottom: 15px;">Contact Us</h4>
+        <p style="color: #cccccc;">Email: esroit2021@gmail.com</p>
+        <p style="color: #cccccc;">Phone: +91-9405430876</p>
+        <p style="color: #cccccc;">Location: 34, Ram Nagar Lane No.2 Tuljbhavani Mangalm, Shegaon Rahatgaon Road Amravati 444604</p>
+      </div>
+  
+  
+      <!-- Social Media -->
+      <div style="flex: 1; min-width: 220px;">
+        <h4 style="margin-bottom: 15px;">Follow Us</h4>
+        <div style="font-size: 24px;">
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <!-- Bottom Bar -->
+    <div style="border-top: 1px solid #333333; margin-top: 40px; padding-top: 20px; text-align: center; font-size: 14px; color: #ffffff;">
+      &copy; 2025 ESRO IT. All rights reserved. 
+    </div>
+  </footer>
+</body>
+</html>

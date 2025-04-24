@@ -443,7 +443,7 @@
     wrapper.addEventListener('mouseenter', () => clearInterval(autoSlide));
     wrapper.addEventListener('mouseleave', () => {
       if (index < totalSlides - 1) {
-        autoSlide = setInterval(nextSlide, 3000);
+        autoSlide = setInterval(nextSlide, 2000);
       }
     });
 
