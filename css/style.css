@@ -16,18 +16,7 @@ body,html {
 }
 
 /* Showcase Section */
-/* .showcase .slider{
-    background: rgb(255, 255, 255);
-    background-size: 300% 300%;
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    position: relative;
-} */
+
 
 /* Main Navigation Bar */
 .navbar {
@@ -475,7 +464,6 @@ body,html {
     left: 0;
     width: 280px;
     height: 100vh;
-    /* background: linear-gradient(135deg, #6e8efb, #a777e3);  */
     padding: 0px 25px 30px;
     transform: translateX(-100%);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
