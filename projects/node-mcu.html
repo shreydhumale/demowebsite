@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ESRO IT - Bluetooth Controlled LED with HC-05</title>
+    <title>ESRO IT - NodeMCU – ESP8266 Wi-Fi Module</title>
     <link rel="icon" href="/images/logo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -249,84 +249,109 @@
 
     <div class="container">
         <div class="project-header">
-            <h1 class="project-title">Bluetooth Controlled LED with HC-05</h1>
+            <h1 class="project-title">NodeMCU – ESP8266 Wi-Fi Module</h1>
             <div class="project-meta">
                 <span><i class="fas fa-calendar-alt"></i> Published: April 24, 2025</span>
-                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Bluetooth, Arduino, IoT</span>
+                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> NodeMCU, IoT, Wi-Fi, ESP8266</span>
             </div>
-            <img src="/images/projects/project9.jpg" alt="Bluetooth Controlled LED" class="project-image">
+            <img src="/images/projects/nodemcu-project.jpg" alt="NodeMCU ESP8266" class="project-image">
         </div>
     
         <div class="project-content">
             <div class="project-section">
                 <h2>Introduction</h2>
-                <p>
-                    This project demonstrates how to control an LED using Bluetooth communication. We’ll be using an Arduino board and an HC-05 Bluetooth module to receive commands from a smartphone app and switch the LED on or off. It’s a great starter project for learning wireless control and IoT basics.
-                </p>
-                <p>
-                    The project involves setting up serial communication between the Bluetooth module and Arduino, and using a mobile app to send simple ON/OFF commands. When a command is received, the Arduino turns the LED on or off based on the command.
-                </p><br>
-                <span style="font-weight: bold;">Circuit Diagram</span> <br><br>
-                <img src="/images/projects/bluetooth-led-circuit.jpg" alt="Bluetooth LED Control Circuit" class="project-schematic">
+                <p>NodeMCU is an open-source development board and firmware based on the ESP8266 Wi-Fi chip. It provides a simple and affordable way to connect devices to the internet using built-in Wi-Fi capabilities. It’s ideal for creating IoT-based applications such as home automation, weather stations, and smart monitoring systems.</p>
+                <p>In this project, we’ll demonstrate a basic NodeMCU project where a user can control an LED using a simple web interface via Wi-Fi. It’s a great beginner-friendly introduction to web-based IoT projects.</p><br>
+                <span style="font-weight: bold;">Board Layout</span><br><br>
+                <img src="/images/projects/nodemcu-layout.jpg" alt="NodeMCU Pin Layout" class="project-schematic">
             </div>
     
             <div class="project-section">
                 <h2>Components Required</h2>
                 <div class="components-list">
                     <div class="component-card">
-                        <h3>Arduino Uno ×1</h3>
-                    </div>
-                    <div class="component-card">
-                        <h3>Bluetooth Module HC-05 ×1</h3>
+                        <h3>NodeMCU ESP8266 Board ×1</h3>
                     </div>
                     <div class="component-card">
                         <h3>LED ×1</h3>
                     </div>
                     <div class="component-card">
-                        <h3>220Ω Resistor ×1</h3>
+                        <h3>220 Ohm Resistor ×1</h3>
                     </div>
                     <div class="component-card">
-                        <h3>Breadboard and Jumper Wires</h3>
+                        <h3>Breadboard & Jumper Wires</h3>
                     </div>
                     <div class="component-card">
-                        <h3>Smartphone with Bluetooth Controller App</h3>
+                        <h3>USB Cable for Programming</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Wi-Fi Connection</h3>
                     </div>
                 </div>
             </div>
     
             <div class="project-section">
-                <h2> SOURCE CODE </h2>
+                <h2>Source Code</h2>
                 <div class="code-block">
                     <pre><code class="language-cpp">
-    // Bluetooth LED Control using HC-05 and Arduino
-    char data = 0;
-    int ledPin = 13;
+    #include &lt;ESP8266WiFi.h&gt;
+    
+    const char* ssid = "Your_SSID";
+    const char* password = "Your_PASSWORD";
+    
+    WiFiServer server(80);
+    int ledPin = D1;
     
     void setup() {
+      Serial.begin(115200);
       pinMode(ledPin, OUTPUT);
-      Serial.begin(9600); // HC-05 default baud rate
+      digitalWrite(ledPin, LOW);
+    
+      WiFi.begin(ssid, password);
+      while (WiFi.status() != WL_CONNECTED) {
+        delay(500);
+        Serial.print(".");
+      }
+      Serial.println("");
+      Serial.println("WiFi connected.");
+      server.begin();
+      Serial.println("Server started.");
+      Serial.print("IP Address: ");
+      Serial.println(WiFi.localIP());
     }
     
     void loop() {
-      if (Serial.available()) {
-        data = Serial.read();
-        if (data == '1') {
-          digitalWrite(ledPin, HIGH); // LED ON
-        } else if (data == '0') {
-          digitalWrite(ledPin, LOW); // LED OFF
-        }
+      WiFiClient client = server.available();
+      if (!client) return;
+    
+      while (!client.available()) delay(1);
+    
+      String req = client.readStringUntil('\r');
+      client.flush();
+    
+      if (req.indexOf("/LED=ON") != -1) {
+        digitalWrite(ledPin, HIGH);
       }
+      if (req.indexOf("/LED=OFF") != -1) {
+        digitalWrite(ledPin, LOW);
+      }
+    
+      client.println("HTTP/1.1 200 OK");
+      client.println("Content-Type: text/html");
+      client.println(""); 
+      client.println("&lt;!DOCTYPE HTML&gt;");
+      client.println("&lt;html&gt;");
+      client.println("&lt;h1&gt;LED Control via WiFi&lt;/h1&gt;");
+      client.println("&lt;a href=\"/LED=ON\"&gt;Turn LED ON&lt;/a&gt;&lt;br&gt;");
+      client.println("&lt;a href=\"/LED=OFF\"&gt;Turn LED OFF&lt;/a&gt;");
+      client.println("&lt;/html&gt;");
     }
                     </code></pre>
                 </div>
             </div>
-    
-            <div class="project-section">
-                <h2>Project Image</h2>
-                <img src="/images/projects/bluetooth-led-project-image.jpg" alt="Bluetooth LED Project Demo" class="project-image">
-            </div>
         </div>
     </div>
+    
     
     
     <div style="text-align: center; margin-top: 3rem;">
@@ -350,7 +375,7 @@
           <li><a href="/about.html" style="color: #cccccc; text-decoration: none;">About Us</a></li>
           <li><a href="/services.html" style="color: #cccccc; text-decoration: none;">Services</a></li>
           <li><a href="/events.html" style="color: #cccccc; text-decoration: none;">Events</a></li>
-          <li><a href="/index.html#feedback" style="color: #cccccc; text-decoration: none;">Feedback</a></li>
+          <li><a href="#feedback" style="color: #cccccc; text-decoration: none;">Feedback</a></li>
         </ul>
       </div>
   
@@ -383,5 +408,6 @@
   </footer>
 
   <script src="/script.js"></script>
+
 </body>
 </html>
