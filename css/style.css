@@ -227,8 +227,8 @@ body,html {
   
   .popup-toast-mobile {
     position: absolute;
-    bottom: 565px;
-    left: 15px; /* changed from right to left */
+    bottom: 585px;
+    right: 10px;
     background-color: rgb(146, 97, 211);
     color: #0c0c0c;
     padding: 15px 20px;
@@ -434,7 +434,6 @@ body,html {
     width: 40px;
     height: 40px;
     position: relative;
-    /* background: linear-gradient(135deg, #6e8efb, #a777e3); */
     background: white;
     border: none;
     border-radius: 8px;
