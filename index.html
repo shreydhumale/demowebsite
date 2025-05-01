@@ -10,6 +10,8 @@
   <link rel="stylesheet" href="/css/news.css">
   <link rel="stylesheet" href="/css/location.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
+
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
@@ -23,19 +25,19 @@
 
   <!-- Mobile Navigation Bar -->
   <div class="navbar">
-    <a href="#home"> <img src="/images/logo.png" alt="EsroIT Logo" class="logo"> </a>
+    <a href="/index.html#home"> <img src="/images/logo.png" alt="EsroIT Logo" class="logo"> </a>
     <button class="hamburger" onclick="toggleMenu()">
       &#9776;
     </button>
     <ul class="mobile-nav">
-      <img src="images/logo.png" alt="">
-      <li><a href="#home">HOME</a></li>
-      <li><a href="about.html">ABOUT</a></li>
-      <li><a href="#news">NEWS</a></li>
-      <li><a href="events.html">EVENTS</a></li>
-      <li><a href="training.html">TRAINING</a></li>
-      <li><a href="projects.html">PROJECTS</a></li>
-      <li><a href="services.html">OUR SERVICES</a></li>
+      <img src="/images/logo.png" alt="">
+      <li><a href="/index.html#home">HOME</a></li>
+      <li><a href="/about.html">ABOUT</a></li>
+      <li><a href="/index.html#news">NEWS</a></li>
+      <li><a href="/events.html">EVENTS</a></li>
+      <li><a href="/training.html">TRAINING</a></li>
+      <li><a href="/projects.html">PROJECTS</a></li>
+      <li><a href="/services.html">OUR SERVICES</a></li>
       <li class="follow-us-mobile">
         <button class="follow-btn">Follow Us ▾</button>
         <div class="social-links">
@@ -50,25 +52,25 @@
     </ul>
 
     <ul class="nav-menu">
-      <li><a href="#home">HOME</a></li>
-      <li><a href="about.html">ABOUT</a></li>
+      <li><a href="/index.html#home">HOME</a></li>
+      <li><a href="/about.html">ABOUT</a></li>
       <!-- Dropdown in Navbar -->
       <li class="dropdown">
         <a href="#">SERVICES &#9662;</a>
         <ul class="dropdown-content" id="servicesDropdown">
           <!-- news dropdown -->
-          <li class="events-dropdown"><a href="#news">NEWS &#9662</a>
+          <li class="events-dropdown"><a href="/index.html#news">NEWS &#9662</a>
 
             <div class="events-dropdown-content">
               <div class="event-item">
                 <div class="event-date">July 21, 2023</div>
-                <a href="ai-workshop.html">
+                <a href="/ai-workshop.html">
                   <div>Conducted workshop on AI & Robotics</div>
                 </a>
               </div>
               <div class="event-item">
                 <div class="event-date">May 9, 2023</div>
-                <a href="tableau-update.html">
+                <a href="/tableau-update.html">
                   <div>Salesforce introduced the next generation of Tableau</div>
                 </a>
               </div>
@@ -77,36 +79,36 @@
           <!-- news dropdown end -->
 
           <!-- events dropdown -->
-          <li class="events-dropdown"><a href="events.html">EVENTS &#9662</a>
+          <li class="events-dropdown"><a href="/events.html">EVENTS &#9662</a>
 
             <div class="events-dropdown-content">
               <div class="event-item">
                 <div class="event-date">June 15, 2023</div>
-                <a href="events.html">
+                <a href="/events.html">
                   <div>Robotics Workshop</div>
                 </a>
               </div>
               <div class="event-item">
                 <div class="event-date">June 22, 2023</div>
-                <a href="events.html">
+                <a href="/events.html">
                   <div>3D Designer printer Workshop</div>
                 </a>
               </div>
               <div class="event-item">
                 <div class="event-date">July 30, 2023</div>
-                <a href="events.html">
+                <a href="/events.html">
                   <div>Computer Hardware & Networking</div>
                 </a>
               </div>
               <div class="event-item">
                 <div class="event-date">June 22, 2023</div>
-                <a href="events.html">
+                <a href="/events.html">
                   <div>Salesforce Training Workshop</div>
                 </a>
               </div>
               <div class="event-item">
                 <div class="event-date">August 22, 2023</div>
-                <a href="events.html">
+                <a href="/events.html">
                   <div>Basic Electronic & Robotics Workshop</div>
                 </a>
               </div>
@@ -117,27 +119,27 @@
           </li>
           <!-- End of events dropdown -->
 
-          <li class="events-dropdown"><a href="training.html">TRAINING &#9662</a>
+          <li class="events-dropdown"><a href="/training.html">TRAINING &#9662</a>
             <div class="events-dropdown-content">
               <div class="event-item">
-                <a href="training.html">
+                <a href="/training.html">
                   <div>Robotics Workshop</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="training.html">
+                <a href="/training.html">
                   <div>3D Designer printer Workshop</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="training.html">
+                <a href="/training.html">
                   <div>Computer Hardware & Networking</div>
                 </a>
               </div>
             </div>
           </li>
           <!-- project dropdown -->
-          <li class="events-dropdown"><a href="projects.html">PROJECTS &#9662</a>
+          <li class="events-dropdown"><a href="/projects.html">PROJECTS &#9662</a>
 
             <div class="events-dropdown-content">
               <div class="event-item">
@@ -195,45 +197,55 @@
                   <div>WeMos D1 R2 – WiFi Development Board</div>
                 </a>
               </div>
+              <div class="event-item">
+                <a href="/projects/water-pump-module.html">
+                  <div>Water Pump Module – Automatic Plant Watering System</div>
+                </a>
+              </div>
+              <div class="event-item">
+                <a href="/projects/7-segment-led-display.html">
+                  <div>7-Segment LED Display</div>
+                </a>
+              </div>
             </div>
 
           </li>
           <!-- project dropdown end -->
 
-          <li class="events-dropdown"><a href="services.html">OUR SERVICES &#9662</a>
+          <li class="events-dropdown"><a href="/services.html">OUR SERVICES &#9662</a>
             <div class="events-dropdown-content">
               <div class="event-item">
-                <a href="services.html">
+                <a href="/services.html">
                   <div>Microcontroller & Educational DIY Projects</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="services.html">
+                <a href="/services.html">
                   <div>3D Printers</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="services.html">
+                <a href="/services.html">
                   <div>Computer Laptop & Printer</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="services.html">
+                <a href="/services.html">
                   <div>GPS - Vehicles & Personal Tracking</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="services.html">
+                <a href="/services.html">
                   <div>CCTV</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="services.html">
+                <a href="/services.html">
                   <div>Troubleshooting & Maintenance of Electronics</div>
                 </a>
               </div>
               <div class="event-item">
-                <a href="services.html">
+                <a href="/services.html">
                   <div>Salesforce Training Course</div>
                 </a>
               </div>

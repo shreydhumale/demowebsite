@@ -7,90 +7,10 @@
   <title>ESRO It - Salesforce Training Workshop</title>
 
   <link rel="stylesheet" href="/css/style.css">
-
+  <link rel="stylesheet" href="/Events and workshop/events.css">
 </head>
 <style>
-  .events-header {
-    background-image: url(/images/background-header.jpg);
-    background-size: cover;
-    color: rgb(48, 47, 47);
-    text-align: center;
-    padding: 80px 20px;
-    margin-bottom: 40px;
-  }
 
-  .events-header h1 {
-    font-size: 2.8rem;
-    margin-bottom: 10px;
-    margin-top: 10px;
-  }
-
-  .gallery-wrapper {
-    position: relative;
-    max-width: 900px;
-    height: 600px;
-    margin: auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    overflow: hidden;
-    border-radius: 10px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
-  }
-
-  .gallery-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
-    width: 100%;
-  }
-
-  .gallery-slide {
-    min-width: 100%;
-    box-sizing: border-box;
-  }
-
-  .gallery-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-
-  .gallery-btn {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
-    border: none;
-    padding: 10px 16px;
-    cursor: pointer;
-    z-index: 10;
-    border-radius: 50%;
-    font-size: 18px;
-    transition: background 0.3s;
-  }
-
-  .gallery-btn:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-  }
-
-  .gallery-prev {
-    left: 10px;
-  }
-
-  .gallery-next {
-    right: 10px;
-  }
-
-  @media (max-width: 768px) {
-    .gallery-wrapper {
-      height: 400px;
-    }
-    .gallery-slide img {
-    width: 100%;
-    height: auto;
-    display: block;
-  }
-  }
 </style>
 
 <body>
@@ -314,6 +234,12 @@
   <section class="events-header">
     <h1>Salesforce Training Workshop</h1>
   </section>
+  <p>
+    Dive into the world of cloud-based CRM with our Salesforce Training Workshop. This session is perfect for beginners and professionals looking to 
+    gain hands-on experience with Salesforce tools like Sales Cloud, Service Cloud, and Lightning components. Learn how to manage leads, automate 
+    business processes, and customize applications to fit organizational needs. Enhance your career opportunities with practical knowledge in 
+    one of the most in-demand platforms in the tech industry.
+  </p>
   <div class="gallery-wrapper" id="gallery-wrapper">
     <div class="gallery-track" id="gallery-track">
       <div class="gallery-slide"><img src="/Events and workshop/images/salesforce1.jpeg" alt=""></div>
@@ -387,86 +313,9 @@
     </div>
   </footer>
 
+ <!-- Footer Section end -->
 
-
-  <!-- Footer Section end -->
-
-
-
-  <script>
-
-    const slider = document.getElementById('gallery-track');
-    const prevBtn = document.getElementById('gallery-prev');
-    const nextBtn = document.getElementById('gallery-next');
-    const totalSlides = slider.children.length;
-    let slideWidth = slider.clientWidth;
-    let index = 0;
-
-    function showSlide(i) {
-      slider.style.transform = `translateX(-${i * slideWidth}px)`;
-      updateButtonState();
-    }
-
-    function nextSlide() {
-      if (index < totalSlides - 1) {
-        index++;
-        showSlide(index);
-      } else {
-        clearInterval(autoSlide);
-      }
-    }
-
-    function prevSlide() {
-      if (index > 0) {
-        index--;
-        showSlide(index);
-      }
-    }
-
-    function updateButtonState() {
-      prevBtn.disabled = index === 0;
-      nextBtn.disabled = index === totalSlides - 1;
-    }
-
-    nextBtn.addEventListener('click', nextSlide);
-    prevBtn.addEventListener('click', prevSlide);
-
-    let autoSlide = setInterval(() => {
-      if (index < totalSlides - 1) {
-        nextSlide();
-      } else {
-        clearInterval(autoSlide);
-      }
-    }, 3000);
-
-    const wrapper = document.getElementById('gallery-wrapper');
-    wrapper.addEventListener('mouseenter', () => clearInterval(autoSlide));
-    wrapper.addEventListener('mouseleave', () => {
-      if (index < totalSlides - 1) {
-        autoSlide = setInterval(nextSlide, 2000);
-      }
-    });
-
-    // Swipe support
-    let startX = 0;
-    slider.addEventListener('touchstart', e => startX = e.touches[0].clientX);
-    slider.addEventListener('touchend', e => {
-      let endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) nextSlide();
-      else if (endX - startX > 50) prevSlide();
-    });
-
-    // Update on resize
-    window.addEventListener('resize', () => {
-      slideWidth = slider.clientWidth;
-      showSlide(index);
-    });
-
-    updateButtonState();
-
-  </script>
-
-
+<script src="events.js"></script>
 
 </body>
 
