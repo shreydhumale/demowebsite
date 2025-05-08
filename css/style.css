@@ -409,9 +409,8 @@ body,html {
 @media (max-width: 768px) {
 
   #visitor-counter{
-    display: none;
     position: fixed;
-    margin-bottom: 49px;
+    margin-bottom: 20px;
   }
   .nav-menu {
     display: none;
