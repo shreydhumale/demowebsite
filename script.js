@@ -10,41 +10,46 @@ window.addEventListener("scroll", () => {
   }
 });
 
-// JavaScript for Vertical Navbar in Services Section
-document.addEventListener("DOMContentLoaded", function () {
-  // Vertical Navbar Functionality
-  const navbar = document.querySelector(".navbar-top");
-  const servicesSection = document.getElementById("services");
-  const aboutSection = document.getElementById("about");
 
-  function checkScroll() {
-    const servicesPosition = servicesSection.getBoundingClientRect().top;
-    const viewportHeight = window.innerHeight;
 
-    if (servicesPosition < viewportHeight / 2) {
-      navbar.classList.add("navbar-vertical");
-      document.body.classList.add("services-active");
-    } else {
-      navbar.classList.remove("navbar-vertical");
-      document.body.classList.remove("services-active");
-    }
-  }
+//dropdown menu background scroll 
 
-  // About Link Smooth Scroll
-  document.querySelectorAll('a[href="#about"]').forEach((anchor) => {
-    anchor.addEventListener("click", function (e) {
-      e.preventDefault();
-      aboutSection.scrollIntoView({
-        behavior: "smooth",
-      });
+document.addEventListener('DOMContentLoaded', function () {
+  const dropdowns = document.querySelectorAll('.events-dropdown-content');
+
+  dropdowns.forEach(dropdown => {
+    dropdown.addEventListener('mouseenter', () => {
+      document.body.classList.add('lock-scroll');
     });
-  });
 
-  window.addEventListener("scroll", checkScroll);
+    dropdown.addEventListener('mouseleave', () => {
+      document.body.classList.remove('lock-scroll');
+    });
+
+    dropdown.addEventListener('wheel', function (e) {
+      const scrollTop = dropdown.scrollTop;
+      const scrollHeight = dropdown.scrollHeight;
+      const clientHeight = dropdown.clientHeight;
+      const isScrollable = scrollHeight > clientHeight;
+      const delta = e.deltaY;
+
+      if (!isScrollable) return;
+
+      const atTop = scrollTop === 0;
+      const atBottom = scrollTop + clientHeight >= scrollHeight;
+
+      if ((delta < 0 && atTop) || (delta > 0 && atBottom)) {
+        e.preventDefault();
+      }
+    }, { passive: false });
+  });
 });
 
 
-//dropdown menu
+
+//dropdown menu end
+
+//visitor counter
 const binId = '681c31658a456b7966999879';
   const apiKey = '$2a$10$GaKUEgjhh5kMP7Heqtgn1OfHBiSvwGtqBs6Y5Ns3.vr5u8cXYYyXO';
   const apiUrl = `https://api.jsonbin.io/v3/b/${binId}`;
@@ -96,8 +101,6 @@ const binId = '681c31658a456b7966999879';
         `Visitors Count: ${new Intl.NumberFormat().format(count)}`;
     }
   });
-
-//visitor counter
 
 //visitor counter end
 
