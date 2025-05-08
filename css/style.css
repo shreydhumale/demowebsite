@@ -146,8 +146,18 @@ body,html {
     padding: 12px;
     z-index: 1000;
     right: 100px;
-    scrollbar-width: none;
+    scrollbar-width: thin;
   }
+  .events-dropdown:hover .events-dropdown-content {
+    display: block;
+  }
+  
+body.lock-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
   
   /* Optional: for Chrome scrollbar hiding */
   .events-dropdown-content::-webkit-scrollbar {
