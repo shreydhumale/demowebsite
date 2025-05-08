@@ -6,10 +6,16 @@ options in projects, training, news tab
 
 events popup on home page---------DONE
 
-events popup animation
+events popup animation---done
 training page
 add 8-10 projects
 add new images to slider images, headline change(blinking)
+
+new-
+-home page image slide sould not stop
+-visitor counter
+-page scrolls when secolling events dropdown
+
 
 
 

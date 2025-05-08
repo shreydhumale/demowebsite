@@ -45,46 +45,63 @@ document.addEventListener("DOMContentLoaded", function () {
 
 
 //dropdown menu
+const binId = '681c31658a456b7966999879';
+  const apiKey = '$2a$10$GaKUEgjhh5kMP7Heqtgn1OfHBiSvwGtqBs6Y5Ns3.vr5u8cXYYyXO';
+  const apiUrl = `https://api.jsonbin.io/v3/b/${binId}`;
 
+  document.addEventListener('DOMContentLoaded', function () {
+    // Only increment if this is a new session
+    if (!sessionStorage.getItem('visited')) {
+      sessionStorage.setItem('visited', 'true');
 
-    //Visitor count
-    document.addEventListener('DOMContentLoaded', function () {
-      // 1. First try localStorage/sessionStorage
-      try {
-        if (!sessionStorage.getItem('visited')) {
-          sessionStorage.setItem('visited', 'true');
-          let count = parseInt(localStorage.getItem('visitorCount') || 0) + 1;
-          localStorage.setItem('visitorCount', count);
-          updateCounter(count);
-        } else {
-          updateCounter(localStorage.getItem('visitorCount') || 0);
+      // Get the current count
+      fetch(apiUrl, {
+        headers: {
+          'X-Master-Key': apiKey
         }
-      }
-      catch (e) {
-        // 2. Fallback to cookies if storage fails
-        console.warn("Using cookie fallback");
-        let count = getCookie('visitorCount');
-        if (!getCookie('visited')) {
-          document.cookie = "visited=true; path=/; max-age=86400"; // 24h
-          count = parseInt(count || 0) + 1;
-          document.cookie = `visitorCount=${count}; path=/; max-age=${365 * 24 * 60 * 60}`;
+      })
+        .then(res => res.json())
+        .then(data => {
+          const currentCount = data.record.visitorCount || 0;
+          const newCount = currentCount + 1;
+
+          // Update the count
+          fetch(apiUrl, {
+            method: 'PUT',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-Master-Key': apiKey
+            },
+            body: JSON.stringify({ visitorCount: newCount })
+          })
+            .then(() => {
+              updateCounter(newCount);
+            });
+        });
+    } else {
+      // Just fetch the existing count
+      fetch(apiUrl, {
+        headers: {
+          'X-Master-Key': apiKey
         }
-        updateCounter(count || 1);
-      }
+      })
+        .then(res => res.json())
+        .then(data => {
+          updateCounter(data.record.visitorCount || 0);
+        });
+    }
 
-      function updateCounter(num) {
-        document.getElementById('visitor-counter').textContent =
-          `Visitors Count: ${new Intl.NumberFormat().format(num)}`;
-      }
+    function updateCounter(count) {
+      document.getElementById('visitor-counter').textContent =
+        `Visitors Count: ${new Intl.NumberFormat().format(count)}`;
+    }
+  });
 
-      function getCookie(name) {
-        return document.cookie
-          .split('; ')
-          .find(row => row.startsWith(name + '='))
-          ?.split('=')[1];
-      }
-    });
+//visitor counter
 
+//visitor counter end
+
+    
     // for mobile menu
     function toggleMenu() {
       const mobileNav = document.querySelector('.mobile-nav');
