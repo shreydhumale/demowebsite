@@ -15,7 +15,7 @@ window.addEventListener("scroll", () => {
 //dropdown menu background scroll 
 
 document.addEventListener('DOMContentLoaded', function () {
-  const dropdowns = document.querySelectorAll('.events-dropdown-content');
+  const dropdowns = document.querySelectorAll('.events-dropdown');
 
   dropdowns.forEach(dropdown => {
     dropdown.addEventListener('mouseenter', () => {

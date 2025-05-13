@@ -152,12 +152,12 @@ body,html {
     display: block;
   }
   
-  body.lock-scroll {
-    overflow: hidden;
-    position: fixed;
-    width: 100%;
-  }
-  
+body.lock-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+}
+
   
   /* Optional: for Chrome scrollbar hiding */
   .events-dropdown-content::-webkit-scrollbar {
