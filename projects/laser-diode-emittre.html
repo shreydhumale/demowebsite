@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM Module (SIM800L)</title>
+    <title>Laser Diode Emitter</title>
     <link rel="icon" href="/images/logo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -249,73 +249,64 @@
 
       <div class="container">
         <div class="project-header">
-          <h1 class="project-title">GSM Module (SIM800L)</h1>
-          <div class="project-meta">
-            <span><i class="fas fa-calendar-alt"></i> Published: April 29, 2025</span>
-            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> GSM, SIM800L, IoT, Communication</span>
-          </div>
-          <img src="/images/projects/gsm-module.jpg" alt="SIM800L GSM Module" class="project-image">
+            <h1 class="project-title">Laser Diode Emitter</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar-alt"></i> Published: May 12, 2025</span>
+                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Laser, Diode, Light Sensor, Arduino</span>
+            </div>
+            <img src="/images/projects/laser-diode-emitter.jpg" alt="Laser Diode Emitter Module" class="project-image">
         </div>
-      
+    
         <div class="project-content">
-          <div class="project-section">
-            <h2>Introduction</h2>
-            <p>The GSM module (such as SIM800L or SIM900) enables microcontrollers to send and receive SMS, make or receive calls, and even connect to the internet using GPRS. It's widely used in IoT applications like home security systems, weather stations, and GPS tracking.</p>
-            <p>In this project, we will use the GSM SIM800L module with an Arduino to send a text message when a button is pressed.</p><br>
-            <span style="font-weight: bold;">Module View</span><br><br>
-            <img src="/images/projects/sim800l-pinout.jpg" alt="SIM800L Pinout" class="project-schematic">
-          </div>
-      
-          <div class="project-section">
-            <h2>Components Required</h2>
-            <div class="components-list">
-              <div class="component-card"><h3>GSM Module SIM800L ×1</h3></div>
-              <div class="component-card"><h3>Arduino UNO ×1</h3></div>
-              <div class="component-card"><h3>Push Button ×1</h3></div>
-              <div class="component-card"><h3>Resistors and Jumper Wires</h3></div>
-              <div class="component-card"><h3>SIM Card (with balance) ×1</h3></div>
-              <div class="component-card"><h3>Power Supply (3.7V Li-ion or 5V Regulated)</h3></div>
+            <div class="project-section">
+                <h2>Introduction</h2>
+                <p>A Laser Diode Emitter is a compact laser source used for various applications like object detection, security systems, laser tripwires, and communication. It emits a focused beam of light and is typically used with a light sensor to detect interruptions in the beam.</p>
+                <p>In this project, we create a simple laser-based security system using an Arduino, laser emitter, and a light-dependent resistor (LDR). When the laser beam is interrupted, an alert is triggered on the Serial Monitor.</p><br>
+                <span style="font-weight: bold;">Module View</span><br><br>
+                <img src="/images/projects/laser-module-view.jpg" alt="Laser Diode Project Setup" class="project-schematic">
             </div>
-          </div>
-      
-          <div class="project-section">
-            <h2>SOURCE CODE</h2>
-            <div class="code-block">
-              <pre><code class="language-cpp">
-      #include <SoftwareSerial.h>
-      
-      SoftwareSerial gsm(7, 8); // RX, TX
-      const int buttonPin = 2;
-      int buttonState = 0;
-      
-      void setup() {
-        pinMode(buttonPin, INPUT);
-        gsm.begin(9600);
-        Serial.begin(9600);
-        delay(1000);
-        gsm.println("AT"); // Check communication
-        delay(1000);
-      }
-      
-      void loop() {
-        buttonState = digitalRead(buttonPin);
-      
-        if (buttonState == HIGH) {
-          gsm.println("AT+CMGF=1");    // Text mode
-          delay(1000);
-          gsm.println("AT+CMGS=\"+911234567890\""); // Replace with your number
-          delay(1000);
-          gsm.print("Button pressed! Sending SMS from GSM module.");
-          delay(100);
-          gsm.write(26); // ASCII code of CTRL+Z to send message
-          delay(5000);
-        }
-      }
-              </code></pre>
+    
+            <div class="project-section">
+                <h2>Components Required</h2>
+                <div class="components-list">
+                    <div class="component-card"><h3>Laser Diode Module ×1</h3></div>
+                    <div class="component-card"><h3>Arduino UNO ×1</h3></div>
+                    <div class="component-card"><h3>LDR (Light Dependent Resistor) ×1</h3></div>
+                    <div class="component-card"><h3>10k ohm Resistor ×1</h3></div>
+                    <div class="component-card"><h3>Breadboard and Jumper Wires</h3></div>
+                    <div class="component-card"><h3>USB Cable for Arduino</h3></div>
+                </div>
             </div>
-          </div>
+    
+            <div class="project-section">
+                <h2>SOURCE CODE</h2>
+                <div class="code-block">
+                    <pre><code class="language-cpp">
+    const int ldrPin = A0;
+    const int threshold = 500;
+    
+    void setup() {
+      Serial.begin(9600);
+      pinMode(ldrPin, INPUT);
+    }
+    
+    void loop() {
+      int ldrValue = analogRead(ldrPin);
+      Serial.print("LDR Value: ");
+      Serial.println(ldrValue);
+    
+      if (ldrValue < threshold) {
+        Serial.println("Laser beam interrupted!");
+      }
+    
+      delay(500);
+    }
+                    </code></pre>
+                </div>
+            </div>
         </div>
-      </div>
+    </div>
+    
       
       
       

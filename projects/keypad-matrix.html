@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM Module (SIM800L)</title>
+    <title>4x4 Matrix Keypad</title>
     <link rel="icon" href="/images/logo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -247,76 +247,77 @@
         </ul>
       </div>
 
-      <div class="container">
-        <div class="project-header">
-          <h1 class="project-title">GSM Module (SIM800L)</h1>
-          <div class="project-meta">
-            <span><i class="fas fa-calendar-alt"></i> Published: April 29, 2025</span>
-            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> GSM, SIM800L, IoT, Communication</span>
-          </div>
-          <img src="/images/projects/gsm-module.jpg" alt="SIM800L GSM Module" class="project-image">
+<div class="container">
+    <div class="project-header">
+        <h1 class="project-title">4x4 Matrix Keypad</h1>
+        <div class="project-meta">
+            <span><i class="fas fa-calendar-alt"></i> Published: May 13, 2025</span>
+            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Keypad, Arduino, Embedded Systems</span>
         </div>
-      
-        <div class="project-content">
-          <div class="project-section">
+        <img src="/images/projects/keypad-matrix.jpg" alt="4x4 Matrix Keypad" class="project-image">
+    </div>
+
+    <div class="project-content">
+        <div class="project-section">
             <h2>Introduction</h2>
-            <p>The GSM module (such as SIM800L or SIM900) enables microcontrollers to send and receive SMS, make or receive calls, and even connect to the internet using GPRS. It's widely used in IoT applications like home security systems, weather stations, and GPS tracking.</p>
-            <p>In this project, we will use the GSM SIM800L module with an Arduino to send a text message when a button is pressed.</p><br>
-            <span style="font-weight: bold;">Module View</span><br><br>
-            <img src="/images/projects/sim800l-pinout.jpg" alt="SIM800L Pinout" class="project-schematic">
-          </div>
-      
-          <div class="project-section">
+            <p>A 4x4 matrix keypad is a simple input device commonly used in embedded systems and microcontroller projects. It consists of 16 keys arranged in a matrix of 4 rows and 4 columns, allowing the user to input numbers and characters easily.</p>
+            <p>In this project, we will connect a 4x4 matrix keypad with an Arduino and write a sketch that reads the key pressed and displays it on the serial monitor.</p><br>
+            <span style="font-weight: bold;">Keypad Layout</span> <br><br>
+            <img src="/images/projects/keypad-layout.jpg" alt="Keypad Layout" class="project-schematic">
+        </div>
+
+        <div class="project-section">
             <h2>Components Required</h2>
             <div class="components-list">
-              <div class="component-card"><h3>GSM Module SIM800L ×1</h3></div>
-              <div class="component-card"><h3>Arduino UNO ×1</h3></div>
-              <div class="component-card"><h3>Push Button ×1</h3></div>
-              <div class="component-card"><h3>Resistors and Jumper Wires</h3></div>
-              <div class="component-card"><h3>SIM Card (with balance) ×1</h3></div>
-              <div class="component-card"><h3>Power Supply (3.7V Li-ion or 5V Regulated)</h3></div>
+                <div class="component-card"><h3>Arduino Uno ×1</h3></div>
+                <div class="component-card"><h3>4x4 Matrix Keypad ×1</h3></div>
+                <div class="component-card"><h3>Jumper Wires</h3></div>
+                <div class="component-card"><h3>Breadboard</h3></div>
+                <div class="component-card"><h3>USB Cable for Arduino</h3></div>
             </div>
-          </div>
-      
-          <div class="project-section">
-            <h2>SOURCE CODE</h2>
-            <div class="code-block">
-              <pre><code class="language-cpp">
-      #include <SoftwareSerial.h>
-      
-      SoftwareSerial gsm(7, 8); // RX, TX
-      const int buttonPin = 2;
-      int buttonState = 0;
-      
-      void setup() {
-        pinMode(buttonPin, INPUT);
-        gsm.begin(9600);
-        Serial.begin(9600);
-        delay(1000);
-        gsm.println("AT"); // Check communication
-        delay(1000);
-      }
-      
-      void loop() {
-        buttonState = digitalRead(buttonPin);
-      
-        if (buttonState == HIGH) {
-          gsm.println("AT+CMGF=1");    // Text mode
-          delay(1000);
-          gsm.println("AT+CMGS=\"+911234567890\""); // Replace with your number
-          delay(1000);
-          gsm.print("Button pressed! Sending SMS from GSM module.");
-          delay(100);
-          gsm.write(26); // ASCII code of CTRL+Z to send message
-          delay(5000);
-        }
-      }
-              </code></pre>
-            </div>
-          </div>
         </div>
-      </div>
-      
+
+        <div class="project-section">
+            <h2>Source Code</h2>
+            <div class="code-block">
+                <pre><code class="language-cpp">
+// Include the keypad library
+#include <Keypad.h>
+
+const byte ROWS = 4;
+const byte COLS = 4;
+
+// Define the keymap
+char keys[ROWS][COLS] = {
+  {'1','2','3','A'},
+  {'4','5','6','B'},
+  {'7','8','9','C'},
+  {'*','0','#','D'}
+};
+
+// Connect keypad rows and columns to Arduino pins
+byte rowPins[ROWS] = {9, 8, 7, 6};
+byte colPins[COLS] = {5, 4, 3, 2};
+
+// Create keypad object
+Keypad keypad = Keypad(makeKeymap(keys), rowPins, colPins, ROWS, COLS);
+
+void setup() {
+  Serial.begin(9600);
+}
+
+void loop() {
+  char key = keypad.getKey();
+  if (key) {
+    Serial.println(key);
+  }
+}
+                </code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
       
       
     

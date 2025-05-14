@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM Module (SIM800L)</title>
+    <title>Joystick Module</title>
     <link rel="icon" href="/images/logo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -247,76 +247,70 @@
         </ul>
       </div>
 
-      <div class="container">
-        <div class="project-header">
-          <h1 class="project-title">GSM Module (SIM800L)</h1>
-          <div class="project-meta">
-            <span><i class="fas fa-calendar-alt"></i> Published: April 29, 2025</span>
-            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> GSM, SIM800L, IoT, Communication</span>
-          </div>
-          <img src="/images/projects/gsm-module.jpg" alt="SIM800L GSM Module" class="project-image">
+<div class="container">
+    <div class="project-header">
+        <h1 class="project-title">Joystick Module</h1>
+        <div class="project-meta">
+            <span><i class="fas fa-calendar-alt"></i> Published: May 13, 2025</span>
+            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Joystick, Arduino, Analog Input</span>
         </div>
-      
-        <div class="project-content">
-          <div class="project-section">
+        <img src="/images/projects/joystick-module.jpg" alt="Joystick Module" class="project-image">
+    </div>
+
+    <div class="project-content">
+        <div class="project-section">
             <h2>Introduction</h2>
-            <p>The GSM module (such as SIM800L or SIM900) enables microcontrollers to send and receive SMS, make or receive calls, and even connect to the internet using GPRS. It's widely used in IoT applications like home security systems, weather stations, and GPS tracking.</p>
-            <p>In this project, we will use the GSM SIM800L module with an Arduino to send a text message when a button is pressed.</p><br>
-            <span style="font-weight: bold;">Module View</span><br><br>
-            <img src="/images/projects/sim800l-pinout.jpg" alt="SIM800L Pinout" class="project-schematic">
-          </div>
-      
-          <div class="project-section">
+            <p>The joystick module is a two-axis analog input device commonly used in gaming and robotic projects. It provides two potentiometers for the X and Y axes, and a push-button that activates when pressed down. It’s ideal for controlling servo motors, cursor movement, or navigating menus on a display.</p>
+            <p>This project demonstrates how to interface the joystick with an Arduino and read analog values from both axes to control an LED or output the values on the Serial Monitor.</p><br>
+            <span style="font-weight: bold;">Module Layout</span> <br><br>
+            <img src="/images/projects/joystick-module-layout.jpg" alt="Joystick Pin Diagram" class="project-schematic">
+        </div>
+
+        <div class="project-section">
             <h2>Components Required</h2>
             <div class="components-list">
-              <div class="component-card"><h3>GSM Module SIM800L ×1</h3></div>
-              <div class="component-card"><h3>Arduino UNO ×1</h3></div>
-              <div class="component-card"><h3>Push Button ×1</h3></div>
-              <div class="component-card"><h3>Resistors and Jumper Wires</h3></div>
-              <div class="component-card"><h3>SIM Card (with balance) ×1</h3></div>
-              <div class="component-card"><h3>Power Supply (3.7V Li-ion or 5V Regulated)</h3></div>
+                <div class="component-card"><h3>Arduino Uno ×1</h3></div>
+                <div class="component-card"><h3>Joystick Module ×1</h3></div>
+                <div class="component-card"><h3>Breadboard ×1</h3></div>
+                <div class="component-card"><h3>Jumper Wires</h3></div>
+                <div class="component-card"><h3>LED ×1 (optional)</h3></div>
             </div>
-          </div>
-      
-          <div class="project-section">
-            <h2>SOURCE CODE</h2>
-            <div class="code-block">
-              <pre><code class="language-cpp">
-      #include <SoftwareSerial.h>
-      
-      SoftwareSerial gsm(7, 8); // RX, TX
-      const int buttonPin = 2;
-      int buttonState = 0;
-      
-      void setup() {
-        pinMode(buttonPin, INPUT);
-        gsm.begin(9600);
-        Serial.begin(9600);
-        delay(1000);
-        gsm.println("AT"); // Check communication
-        delay(1000);
-      }
-      
-      void loop() {
-        buttonState = digitalRead(buttonPin);
-      
-        if (buttonState == HIGH) {
-          gsm.println("AT+CMGF=1");    // Text mode
-          delay(1000);
-          gsm.println("AT+CMGS=\"+911234567890\""); // Replace with your number
-          delay(1000);
-          gsm.print("Button pressed! Sending SMS from GSM module.");
-          delay(100);
-          gsm.write(26); // ASCII code of CTRL+Z to send message
-          delay(5000);
-        }
-      }
-              </code></pre>
-            </div>
-          </div>
         </div>
-      </div>
-      
+
+        <div class="project-section">
+            <h2>Source Code</h2>
+            <div class="code-block">
+                <pre><code class="language-cpp">
+int xPin = A0; // X-axis connected to A0
+int yPin = A1; // Y-axis connected to A1
+int buttonPin = 2; // SW pin connected to D2
+
+void setup() {
+  Serial.begin(9600);
+  pinMode(buttonPin, INPUT_PULLUP);
+}
+
+void loop() {
+  int xValue = analogRead(xPin);
+  int yValue = analogRead(yPin);
+  int buttonState = digitalRead(buttonPin);
+
+  Serial.print("X: ");
+  Serial.print(xValue);
+  Serial.print(" | Y: ");
+  Serial.print(yValue);
+  Serial.print(" | Button: ");
+  Serial.println(buttonState == LOW ? "Pressed" : "Released");
+
+  delay(200);
+}
+                </code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
       
       
     

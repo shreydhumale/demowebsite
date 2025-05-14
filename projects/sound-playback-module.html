@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sound Playback Module (DFPlayer Mini)</title>
+    <link rel="icon" href="/images/logo-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/projects/projects.css">
+
+</head>
+
+<body>
+    <div class="navbar">
+        <a href="/index.html#home"> <img src="/images/logo.png" alt="EsroIT Logo" class="logo"> </a>
+        <button class="hamburger" onclick="toggleMenu()">
+            &#9776;
+        </button>
+        <ul class="mobile-nav">
+            <img src="/images/logo.png" alt="">
+            <li><a href="/index.html#home">HOME</a></li>
+            <li><a href="/about.html">ABOUT</a></li>
+            <li><a href="/index.html#news">NEWS</a></li>
+            <li><a href="/events.html">EVENTS</a></li>
+            <li><a href="/training.html">TRAINING</a></li>
+            <li><a href="/projects.html">PROJECTS</a></li>
+            <li><a href="/services.html">OUR SERVICES</a></li>
+            <li class="follow-us-mobile">
+                <button class="follow-btn">Follow Us ▾</button>
+                <div class="social-links">
+                    <a href="" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+
+                </div>
+            </li>
+        </ul>
+
+        <ul class="nav-menu">
+            <li><a href="/index.html#home">HOME</a></li>
+            <li><a href="/about.html">ABOUT</a></li>
+            <!-- Dropdown in Navbar -->
+            <li class="dropdown">
+                <a href="#">SERVICES &#9662;</a>
+                <ul class="dropdown-content" id="servicesDropdown">
+                    <!-- news dropdown -->
+                    <li class="events-dropdown"><a href="/index.html#news">NEWS &#9662</a>
+
+                        <div class="events-dropdown-content">
+                            <div class="event-item">
+                                <div class="event-date">July 21, 2023</div>
+                                <a href="/ai-workshop.html">
+                                    <div>Conducted workshop on AI & Robotics</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">May 9, 2023</div>
+                                <a href="/tableau-update.html">
+                                    <div>Salesforce introduced the next generation of Tableau</div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- news dropdown end -->
+
+                    <!-- events dropdown -->
+                    <li class="events-dropdown"><a href="/events.html">EVENTS &#9662</a>
+
+                        <div class="events-dropdown-content">
+                            <div class="event-item">
+                                <div class="event-date">June 15, 2023</div>
+                                <a href="/events.html">
+                                    <div>Robotics Workshop</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">June 22, 2023</div>
+                                <a href="/events.html">
+                                    <div>3D Designer printer Workshop</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">July 30, 2023</div>
+                                <a href="/events.html">
+                                    <div>Computer Hardware & Networking</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">June 22, 2023</div>
+                                <a href="/events.html">
+                                    <div>Salesforce Training Workshop</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <div class="event-date">August 22, 2023</div>
+                                <a href="/events.html">
+                                    <div>Basic Electronic & Robotics Workshop</div>
+                                </a>
+                            </div>
+                        </div>
+
+                        <!-- When no events -->
+                        <!-- <div class="no-events">No upcoming events</div> -->
+                    </li>
+                    <!-- End of events dropdown -->
+
+                    <li class="events-dropdown"><a href="/training.html">TRAINING &#9662</a>
+                        <div class="events-dropdown-content">
+                            <div class="event-item">
+                                <a href="/training.html">
+                                    <div>Robotics Workshop</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/training.html">
+                                    <div>3D Designer printer Workshop</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/training.html">
+                                    <div>Computer Hardware & Networking</div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- project dropdown -->
+                    <li class="events-dropdown"><a href="/projects.html">PROJECTS &#9662</a>
+
+                        <div class="events-dropdown-content">
+                            <div class="event-item">
+                                <a href="/projects/temperature-and-humidity.html">
+                                    <div>DHT11 Sensors Temperature and Humidity and i2c LCD - Arduino</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/height-measuring-machine.html">
+                                    <div>DIY Arduino Height Measuring Machine</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/interfacing-arduino-uno-with-LDR.html">
+                                    <div>Interfacing Arduino uno with LDR</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/interfacing-L2C-with-arduino.html">
+                                    <div>Interfacing an I2C LCD with Arduino UNO</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/measuring-water-flow-rate.html">
+                                    <div>Measuring Water Flow Rate Using Arduino and Flow Sensor</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/radar-with-arduino-and-ultrasonic.html">
+                                    <div>Radar with Arduino & Ultrasonic</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/water-diya.html">
+                                    <div>Water Diya at Home</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/raspberry-pi-3-model.html">
+                                    <div>Raspberry Pi 3 Model B+</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/bluetooth-controlled-led.html">
+                                    <div>Bluetooth Controlled LED with HC-05</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/node-mcu.html">
+                                    <div>NodeMCU – ESP8266 Wi-Fi Module</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/projects/wemos-d1-r1.html">
+                                    <div>WeMos D1 R2 – WiFi Development Board</div>
+                                </a>
+                            </div>
+                        </div>
+
+                    </li>
+                    <!-- project dropdown end -->
+
+                    <li class="events-dropdown"><a href="/services.html">OUR SERVICES &#9662</a>
+                        <div class="events-dropdown-content">
+                            <div class="event-item">
+                                <a href="/services.html">
+                                    <div>Microcontroller & Educational DIY Projects</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/services.html">
+                                    <div>3D Printers</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/services.html">
+                                    <div>Computer Laptop & Printer</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/services.html">
+                                    <div>GPS - Vehicles & Personal Tracking</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/services.html">
+                                    <div>CCTV</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/services.html">
+                                    <div>Troubleshooting & Maintenance of Electronics</div>
+                                </a>
+                            </div>
+                            <div class="event-item">
+                                <a href="/services.html">
+                                    <div>Salesforce Training Course</div>
+                                </a>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </li>
+            <!-- Dropdown in Navbar end-->
+
+            <div class="follow-us-dropdown">
+                <div class="follow-us-label">
+                    <span>Follow Us</span>
+                </div>
+                <div class="follow-us-menu">
+                    <a href="" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+                    <a href="" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+                    <a href="" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+                    <a href="" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+                    <a href="" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+                </div>
+            </div>
+        </ul>
+    </div>
+    <div class="container">
+        <div class="project-header">
+            <h1 class="project-title">Sound Playback Module (DFPlayer Mini)</h1>
+            <div class="project-meta">
+                <span><i class="fas fa-calendar-alt"></i> Published: May 13, 2025</span>
+                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> DFPlayer Mini, Sound Module, Arduino</span>
+            </div>
+            <img src="/images/projects/sound-playback-module.jpg"
+                alt="DFPlayer Mini Sound Module" class="project-image">
+        </div>
+
+        <div class="project-content">
+            <div class="project-section">
+                <h2>Introduction</h2>
+                <p>The DFPlayer Mini is a small and low-cost MP3 module with a simplified output directly to the
+                    speaker. It can be used as a standalone module with a battery, speaker, and push buttons or used in
+                    combination with an Arduino or any other microcontroller.</p>
+                <p>This module is ideal for voice feedback, sound effects, and music playback in embedded systems and
+                    DIY projects.</p><br>
+                <span style="font-weight: bold;">Module Layout</span> <br><br>
+                <img src="/images/projects/sound-module-layout.jpg"
+                    alt="DFPlayer Mini Pinout" class="project-schematic">
+            </div>
+
+            <div class="project-section">
+                <h2>Components Required</h2>
+                <div class="components-list">
+                    <div class="component-card">
+                        <h3>Arduino UNO ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>DFPlayer Mini Module ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Speaker (3W) ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Micro SD Card (formatted FAT32 with MP3 files) ×1</h3>
+                    </div>
+                    <div class="component-card">
+                        <h3>Jumper Wires</h3>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-section">
+                <h2>Source Code</h2>
+                <div class="code-block">
+                    <pre><code class="language-cpp">
+#include <SoftwareSerial.h>
+#include <DFRobotDFPlayerMini.h>
+
+SoftwareSerial mySerial(10, 11); // RX, TX
+DFRobotDFPlayerMini myDFPlayer;
+
+void setup() {
+  mySerial.begin(9600);
+  Serial.begin(9600);
+
+  if (!myDFPlayer.begin(mySerial)) {
+    Serial.println("Unable to begin DFPlayer Mini.");
+    while(true);
+  }
+  Serial.println("DFPlayer Mini online.");
+
+  myDFPlayer.volume(20);  // Set volume value (0 to 30)
+  myDFPlayer.play(1);     // Play the first MP3 file
+}
+
+void loop() {
+  // Add logic if needed
+}
+</code></pre>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+    <!-- footer -->
+    <footer style="background-color: #333333; color: #ffffff; padding: 50px 20px; font-family: 'Segoe UI', sans-serif;">
+        <div
+            style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+
+            <!-- About -->
+            <div style="flex: 1; min-width: 220px;">
+                <h3 style="margin-bottom: 15px;">ESRO IT</h3>
+                <p style="line-height: 1.6; color: #cccccc;">
+                    With our innovative and insightful technology, we strive to enhance our users every day experiences.
+                </p>
+            </div>
+
+            <!-- Navigation -->
+            <div style="flex: 1; min-width: 220px;">
+                <h4 style="margin-bottom: 15px;">Quick Links</h4>
+                <ul style="list-style: none; padding: 0; line-height: 2;">
+                    <li><a href="/about.html" style="color: #cccccc; text-decoration: none;">About Us</a></li>
+                    <li><a href="/services.html" style="color: #cccccc; text-decoration: none;">Services</a></li>
+                    <li><a href="/events.html" style="color: #cccccc; text-decoration: none;">Events</a></li>
+                    <li><a href="#feedback" style="color: #cccccc; text-decoration: none;">Feedback</a></li>
+                </ul>
+            </div>
+
+            <!-- Contact -->
+            <div style="flex: 1; min-width: 220px;">
+                <h4 style="margin-bottom: 15px;">Contact Us</h4>
+                <p style="color: #cccccc;">Email: esroit2021@gmail.com</p>
+                <p style="color: #cccccc;">Phone: +91-9405430876</p>
+                <p style="color: #cccccc;">Location: 34, Ram Nagar Lane No.2 Tuljbhavani Mangalm, Shegaon Rahatgaon Road
+                    Amravati 444604</p>
+            </div>
+
+
+            <!-- Social Media -->
+            <div style="flex: 1; min-width: 220px;">
+                <h4 style="margin-bottom: 15px;">Follow Us</h4>
+                <div style="font-size: 24px;">
+                    <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+                    <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- Bottom Bar -->
+        <div
+            style="border-top: 1px solid #333333; margin-top: 40px; padding-top: 20px; text-align: center; font-size: 14px; color: #ffffff;">
+            &copy; 2025 ESRO IT. All rights reserved.
+        </div>
+    </footer>
+
+    <script src="/script.js"></script>
+
+</body>
+
+</html>

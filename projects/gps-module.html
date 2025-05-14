@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GSM Module (SIM800L)</title>
+    <title>GPS Module (Neo-6M)</title>
     <link rel="icon" href="/images/logo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -249,32 +249,31 @@
 
       <div class="container">
         <div class="project-header">
-          <h1 class="project-title">GSM Module (SIM800L)</h1>
+          <h1 class="project-title">GPS Module (Neo-6M)</h1>
           <div class="project-meta">
-            <span><i class="fas fa-calendar-alt"></i> Published: April 29, 2025</span>
-            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> GSM, SIM800L, IoT, Communication</span>
+            <span><i class="fas fa-calendar-alt"></i> Published: April 30, 2025</span>
+            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> GPS, Neo-6M, Location Tracking, IoT</span>
           </div>
-          <img src="/images/projects/gsm-module.jpg" alt="SIM800L GSM Module" class="project-image">
+          <img src="/images/projects/gps-module.jpg" alt="GPS Module Neo-6M" class="project-image">
         </div>
       
         <div class="project-content">
           <div class="project-section">
             <h2>Introduction</h2>
-            <p>The GSM module (such as SIM800L or SIM900) enables microcontrollers to send and receive SMS, make or receive calls, and even connect to the internet using GPRS. It's widely used in IoT applications like home security systems, weather stations, and GPS tracking.</p>
-            <p>In this project, we will use the GSM SIM800L module with an Arduino to send a text message when a button is pressed.</p><br>
+            <p>The Neo-6M GPS Module is a commonly used GPS receiver module that provides accurate location data such as latitude, longitude, altitude, speed, and UTC time. It communicates via serial protocol and is widely used in navigation, vehicle tracking, and IoT-based positioning systems.</p>
+            <p>In this project, we interface a GPS module with Arduino to display the real-time coordinates on the Serial Monitor.</p><br>
             <span style="font-weight: bold;">Module View</span><br><br>
-            <img src="/images/projects/sim800l-pinout.jpg" alt="SIM800L Pinout" class="project-schematic">
+            <img src="/images/projects/gps-module-module-view.jpg" alt="Neo-6M GPS with antenna" class="project-schematic">
           </div>
       
           <div class="project-section">
             <h2>Components Required</h2>
             <div class="components-list">
-              <div class="component-card"><h3>GSM Module SIM800L ×1</h3></div>
+              <div class="component-card"><h3>Neo-6M GPS Module ×1</h3></div>
               <div class="component-card"><h3>Arduino UNO ×1</h3></div>
-              <div class="component-card"><h3>Push Button ×1</h3></div>
-              <div class="component-card"><h3>Resistors and Jumper Wires</h3></div>
-              <div class="component-card"><h3>SIM Card (with balance) ×1</h3></div>
-              <div class="component-card"><h3>Power Supply (3.7V Li-ion or 5V Regulated)</h3></div>
+              <div class="component-card"><h3>Jumper Wires</h3></div>
+              <div class="component-card"><h3>GPS Antenna (typically included)</h3></div>
+              <div class="component-card"><h3>USB Cable for Arduino</h3></div>
             </div>
           </div>
       
@@ -283,32 +282,29 @@
             <div class="code-block">
               <pre><code class="language-cpp">
       #include <SoftwareSerial.h>
+      #include <TinyGPS++.h>
       
-      SoftwareSerial gsm(7, 8); // RX, TX
-      const int buttonPin = 2;
-      int buttonState = 0;
+      static const int RXPin = 4, TXPin = 3;
+      static const uint32_t GPSBaud = 9600;
+      
+      TinyGPSPlus gps;
+      SoftwareSerial ss(RXPin, TXPin);
       
       void setup() {
-        pinMode(buttonPin, INPUT);
-        gsm.begin(9600);
-        Serial.begin(9600);
-        delay(1000);
-        gsm.println("AT"); // Check communication
-        delay(1000);
+        Serial.begin(115200);
+        ss.begin(GPSBaud);
+        Serial.println("GPS Module is starting...");
       }
       
       void loop() {
-        buttonState = digitalRead(buttonPin);
-      
-        if (buttonState == HIGH) {
-          gsm.println("AT+CMGF=1");    // Text mode
-          delay(1000);
-          gsm.println("AT+CMGS=\"+911234567890\""); // Replace with your number
-          delay(1000);
-          gsm.print("Button pressed! Sending SMS from GSM module.");
-          delay(100);
-          gsm.write(26); // ASCII code of CTRL+Z to send message
-          delay(5000);
+        while (ss.available() > 0) {
+          gps.encode(ss.read());
+          if (gps.location.isUpdated()) {
+            Serial.print("Latitude: ");
+            Serial.println(gps.location.lat(), 6);
+            Serial.print("Longitude: ");
+            Serial.println(gps.location.lng(), 6);
+          }
         }
       }
               </code></pre>
