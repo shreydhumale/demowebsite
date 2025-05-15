@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -371,4 +372,379 @@ void loop() {
   <script src="/script.js"></script>
 
 </body>
+=======
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Motor Driver Module (L298N)</title>
+    <link rel="icon" href="/images/logo-removebg-preview.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/projects/projects.css">
+    
+</head>
+<body>
+    <div class="navbar">
+        <a href="/index.html#home"> <img src="/images/logo.png" alt="EsroIT Logo" class="logo"> </a>
+        <button class="hamburger" onclick="toggleMenu()">
+          &#9776;
+        </button>
+        <ul class="mobile-nav">
+          <img src="/images/logo.png" alt="">
+          <li><a href="/index.html#home">HOME</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <li><a href="/index.html#news">NEWS</a></li>
+          <li><a href="/events.html">EVENTS</a></li>
+          <li><a href="/training.html">TRAINING</a></li>
+          <li><a href="/projects.html">PROJECTS</a></li>
+          <li><a href="/services.html">OUR SERVICES</a></li>
+          <li class="follow-us-mobile">
+            <button class="follow-btn">Follow Us ▾</button>
+            <div class="social-links">
+              <a href="" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              <a href="" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+              <a href="" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+              <a href="" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+              <a href="" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+    
+            </div>
+          </li>
+        </ul>
+    
+        <ul class="nav-menu">
+          <li><a href="/index.html#home">HOME</a></li>
+          <li><a href="/about.html">ABOUT</a></li>
+          <!-- Dropdown in Navbar -->
+          <li class="dropdown">
+            <a href="#">SERVICES &#9662;</a>
+            <ul class="dropdown-content" id="servicesDropdown">
+              <!-- news dropdown -->
+              <li class="events-dropdown"><a href="/index.html#news">NEWS &#9662</a>
+    
+                <div class="events-dropdown-content">
+                  <div class="event-item">
+                    <div class="event-date">July 21, 2023</div>
+                    <a href="/ai-workshop.html">
+                      <div>Conducted workshop on AI & Robotics</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <div class="event-date">May 9, 2023</div>
+                    <a href="/tableau-update.html">
+                      <div>Salesforce introduced the next generation of Tableau</div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <!-- news dropdown end -->
+    
+              <!-- events dropdown -->
+              <li class="events-dropdown"><a href="/events.html">EVENTS &#9662</a>
+    
+                <div class="events-dropdown-content">
+                  <div class="event-item">
+                    <div class="event-date">June 15, 2023</div>
+                    <a href="/events.html">
+                      <div>Robotics Workshop</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <div class="event-date">June 22, 2023</div>
+                    <a href="/events.html">
+                      <div>3D Designer printer Workshop</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <div class="event-date">July 30, 2023</div>
+                    <a href="/events.html">
+                      <div>Computer Hardware & Networking</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <div class="event-date">June 22, 2023</div>
+                    <a href="/events.html">
+                      <div>Salesforce Training Workshop</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <div class="event-date">August 22, 2023</div>
+                    <a href="/events.html">
+                      <div>Basic Electronic & Robotics Workshop</div>
+                    </a>
+                  </div>
+                </div>
+    
+                <!-- When no events -->
+                <!-- <div class="no-events">No upcoming events</div> -->
+              </li>
+              <!-- End of events dropdown -->
+    
+              <li class="events-dropdown"><a href="/training.html">TRAINING &#9662</a>
+                <div class="events-dropdown-content">
+                  <div class="event-item">
+                    <a href="/training.html">
+                      <div>Robotics Workshop</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/training.html">
+                      <div>3D Designer printer Workshop</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/training.html">
+                      <div>Computer Hardware & Networking</div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+              <!-- project dropdown -->
+              <li class="events-dropdown"><a href="/projects.html">PROJECTS &#9662</a>
+    
+                <div class="events-dropdown-content">
+                  <div class="event-item">
+                    <a href="/projects/temperature-and-humidity.html">
+                      <div>DHT11 Sensors Temperature and Humidity and i2c LCD - Arduino</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/height-measuring-machine.html">
+                      <div>DIY Arduino Height Measuring Machine</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/interfacing-arduino-uno-with-LDR.html">
+                      <div>Interfacing Arduino uno with LDR</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/interfacing-L2C-with-arduino.html">
+                      <div>Interfacing an I2C LCD with Arduino UNO</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/measuring-water-flow-rate.html">
+                      <div>Measuring Water Flow Rate Using Arduino and Flow Sensor</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/radar-with-arduino-and-ultrasonic.html">
+                      <div>Radar with Arduino & Ultrasonic</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/water-diya.html">
+                      <div>Water Diya at Home</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/raspberry-pi-3-model.html">
+                      <div>Raspberry Pi 3 Model B+</div>
+                    </a>
+                  </div>   
+                  <div class="event-item">
+                    <a href="/projects/bluetooth-controlled-led.html">
+                      <div>Bluetooth Controlled LED with HC-05</div>
+                    </a>
+                  </div>   
+                  <div class="event-item">
+                    <a href="/projects/node-mcu.html">
+                      <div>NodeMCU – ESP8266 Wi-Fi Module</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/projects/wemos-d1-r1.html">
+                      <div>WeMos D1 R2 – WiFi Development Board</div>
+                    </a>
+                  </div>
+                </div>
+    
+              </li>
+              <!-- project dropdown end -->
+    
+              <li class="events-dropdown"><a href="/services.html">OUR SERVICES &#9662</a>
+                <div class="events-dropdown-content">
+                  <div class="event-item">
+                    <a href="/services.html">
+                      <div>Microcontroller & Educational DIY Projects</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/services.html">
+                      <div>3D Printers</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/services.html">
+                      <div>Computer Laptop & Printer</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/services.html">
+                      <div>GPS - Vehicles & Personal Tracking</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/services.html">
+                      <div>CCTV</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/services.html">
+                      <div>Troubleshooting & Maintenance of Electronics</div>
+                    </a>
+                  </div>
+                  <div class="event-item">
+                    <a href="/services.html">
+                      <div>Salesforce Training Course</div>
+                    </a>
+                  </div>
+                </div>
+              </li>
+            </ul>
+          </li>
+          <!-- Dropdown in Navbar end-->
+    
+          <div class="follow-us-dropdown">
+            <div class="follow-us-label">
+              <span>Follow Us</span>
+            </div>
+            <div class="follow-us-menu">
+              <a href="" target="_blank"><i class="fab fa-github"></i> GitHub</a>
+              <a href="" target="_blank"><i class="fab fa-linkedin"></i> LinkedIn</a>
+              <a href="" target="_blank"><i class="fab fa-twitter"></i> Twitter</a>
+              <a href="" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+              <a href="" target="_blank"><i class="fab fa-youtube"></i> YouTube</a>
+            </div>
+          </div>
+        </ul>
+      </div>
+
+<div class="container">
+    <div class="project-header">
+        <h1 class="project-title">Motor Driver Module (L298N)</h1>
+        <div class="project-meta">
+            <span><i class="fas fa-calendar-alt"></i> Published: May 13, 2025</span>
+            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> L298N, Motor Driver, Arduino</span>
+        </div>
+        <img src="/images/projects/motor-driver-module.jpg" alt="Motor Driver Module L298N" class="project-image">
+    </div>
+
+    <div class="project-content">
+        <div class="project-section">
+            <h2>Introduction</h2>
+            <p>The L298N Motor Driver Module is a high-power dual-channel H-Bridge motor driver designed to drive DC motors and stepper motors. It allows control of the speed and direction of two DC motors or one stepper motor using an Arduino or any microcontroller.</p>
+            <p>In this project, we’ll use an Arduino to control the direction and speed of two DC motors using the L298N module.</p><br>
+            <span style="font-weight: bold;">Module Layout</span> <br><br>
+            <img src="/images/projects/motor-driver-layout.jpg" alt="L298N Pinout" class="project-schematic">
+        </div>
+
+        <div class="project-section">
+            <h2>Components Required</h2>
+            <div class="components-list">
+                <div class="component-card"><h3>Arduino UNO ×1</h3></div>
+                <div class="component-card"><h3>L298N Motor Driver Module ×1</h3></div>
+                <div class="component-card"><h3>DC Motors ×2</h3></div>
+                <div class="component-card"><h3>Battery or Power Supply ×1</h3></div>
+                <div class="component-card"><h3>Jumper Wires</h3></div>
+                <div class="component-card"><h3>Breadboard (optional)</h3></div>
+            </div>
+        </div>
+
+        <div class="project-section">
+            <h2>Source Code</h2>
+            <div class="code-block">
+<pre><code class="language-cpp">
+// Motor Driver with Arduino
+int enA = 9;
+int in1 = 8;
+int in2 = 7;
+
+void setup() {
+  pinMode(enA, OUTPUT);
+  pinMode(in1, OUTPUT);
+  pinMode(in2, OUTPUT);
+}
+
+void loop() {
+  digitalWrite(in1, HIGH);
+  digitalWrite(in2, LOW);
+  analogWrite(enA, 200); // speed control
+  delay(2000);
+
+  digitalWrite(in1, LOW);
+  digitalWrite(in2, HIGH);
+  delay(2000);
+}
+</code></pre>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+      
+      
+    
+    
+    <div style="text-align: center; margin-top: 3rem;">
+        <a href="/projects.html" class="btn"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+    </div>
+        <!-- footer -->
+   <footer style="background-color: #333333; color: #ffffff; padding: 50px 20px; font-family: 'Segoe UI', sans-serif;">
+    <div style="max-width: 1200px; margin: auto; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px;">
+      
+      <!-- About -->
+      <div style="flex: 1; min-width: 220px;">
+        <h3 style="margin-bottom: 15px;">ESRO IT</h3>
+        <p style="line-height: 1.6; color: #cccccc;">
+          With our innovative and insightful technology, we strive to enhance our users every day experiences.      </p>
+      </div>
+  
+      <!-- Navigation -->
+      <div style="flex: 1; min-width: 220px;">
+        <h4 style="margin-bottom: 15px;">Quick Links</h4>
+        <ul style="list-style: none; padding: 0; line-height: 2;">
+          <li><a href="/about.html" style="color: #cccccc; text-decoration: none;">About Us</a></li>
+          <li><a href="/services.html" style="color: #cccccc; text-decoration: none;">Services</a></li>
+          <li><a href="/events.html" style="color: #cccccc; text-decoration: none;">Events</a></li>
+          <li><a href="#feedback" style="color: #cccccc; text-decoration: none;">Feedback</a></li>
+        </ul>
+      </div>
+  
+      <!-- Contact -->
+      <div style="flex: 1; min-width: 220px;">
+        <h4 style="margin-bottom: 15px;">Contact Us</h4>
+        <p style="color: #cccccc;">Email: esroit2021@gmail.com</p>
+        <p style="color: #cccccc;">Phone: +91-9405430876</p>
+        <p style="color: #cccccc;">Location: 34, Ram Nagar Lane No.2 Tuljbhavani Mangalm, Shegaon Rahatgaon Road Amravati 444604</p>
+      </div>
+  
+  
+      <!-- Social Media -->
+      <div style="flex: 1; min-width: 220px;">
+        <h4 style="margin-bottom: 15px;">Follow Us</h4>
+        <div style="font-size: 24px;">
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-twitter"></i></a>
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#" style="color: #ffffff; margin-right: 15px;"><i class="fab fa-instagram"></i></a>
+        </div>
+      </div>
+  
+    </div>
+  
+    <!-- Bottom Bar -->
+    <div style="border-top: 1px solid #333333; margin-top: 40px; padding-top: 20px; text-align: center; font-size: 14px; color: #ffffff;">
+      &copy; 2025 ESRO IT. All rights reserved. 
+    </div>
+  </footer>
+
+  <script src="/script.js"></script>
+
+</body>
+>>>>>>> 42313db6ee68bff34118e8794b1c94a64e9b01a2
 </html>
