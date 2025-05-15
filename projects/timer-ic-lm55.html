@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sound Playback Module (DFPlayer Mini)</title>
+    <title>Timer IC LM555</title>
     <link rel="icon" href="/images/logo-removebg-preview.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
@@ -248,88 +248,56 @@
             </div>
         </ul>
     </div>
-    <div class="container">
-        <div class="project-header">
-            <h1 class="project-title">Sound Playback Module (DFPlayer Mini)</h1>
-            <div class="project-meta">
-                <span><i class="fas fa-calendar-alt"></i> Published: May 13, 2025</span>
-                <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> DFPlayer Mini, Sound Module, Arduino</span>
-            </div>
-            <img src="/images/projects/sound-playback-module.jpg"
-                alt="DFPlayer Mini Sound Module" class="project-image">
+
+
+<div class="container">
+    <div class="project-header">
+        <h1 class="project-title">Timer IC LM555</h1>
+        <div class="project-meta">
+            <span><i class="fas fa-calendar-alt"></i> Published: May 13, 2025</span>
+            <span style="margin-left: 1rem;"><i class="fas fa-tags"></i> Electronics, Timer, LM555</span>
+        </div>
+        <img src="/images/projects/timer-ic-lm555.jpg" alt="Timer IC LM555" class="project-image">
+    </div>
+
+    <div class="project-content">
+        <div class="project-section">
+            <h2>Introduction</h2>
+            <p>The LM555 Timer IC is one of the most popular and versatile integrated circuits used in electronics. It is commonly used for timing, pulse generation, and oscillator applications. In this project, we’ll use the LM555 in monostable mode to blink an LED for a set time duration.</p>
         </div>
 
-        <div class="project-content">
-            <div class="project-section">
-                <h2>Introduction</h2>
-                <p>The DFPlayer Mini is a small and low-cost MP3 module with a simplified output directly to the
-                    speaker. It can be used as a standalone module with a battery, speaker, and push buttons or used in
-                    combination with an Arduino or any other microcontroller.</p>
-                <p>This module is ideal for voice feedback, sound effects, and music playback in embedded systems and
-                    DIY projects.</p><br>
-                <span style="font-weight: bold;">Module Layout</span> <br><br>
-                <img src="/images/projects/sound-module-layout.jpg"
-                    alt="DFPlayer Mini Pinout" class="project-schematic">
+        <div class="project-section">
+            <h2>Components Required</h2>
+            <div class="components-list">
+                <div class="component-card"><h3>LM555 Timer IC ×1</h3></div>
+                <div class="component-card"><h3>LED ×1</h3></div>
+                <div class="component-card"><h3>10kΩ Resistor ×1</h3></div>
+                <div class="component-card"><h3>100µF Capacitor ×1</h3></div>
+                <div class="component-card"><h3>Push Button ×1</h3></div>
+                <div class="component-card"><h3>Breadboard and Jumper Wires</h3></div>
             </div>
+        </div>
 
-            <div class="project-section">
-                <h2>Components Required</h2>
-                <div class="components-list">
-                    <div class="component-card">
-                        <h3>Arduino UNO ×1</h3>
-                    </div>
-                    <div class="component-card">
-                        <h3>DFPlayer Mini Module ×1</h3>
-                    </div>
-                    <div class="component-card">
-                        <h3>Speaker (3W) ×1</h3>
-                    </div>
-                    <div class="component-card">
-                        <h3>Micro SD Card (formatted FAT32 with MP3 files) ×1</h3>
-                    </div>
-                    <div class="component-card">
-                        <h3>Jumper Wires</h3>
-                    </div>
-                </div>
-            </div>
+        <div class="project-section">
+            <h2>Source Code / Circuit</h2>
+            <p>This project does not require microcontroller code. Below is the circuit wiring explanation:</p>
+            <div class="code-block">
+<pre>
+- Pin 1 (GND) → GND
+- Pin 2 (Trigger) → Push button to GND (with pull-up resistor)
+- Pin 3 (Output) → LED with 330Ω resistor to GND
+- Pin 4 (Reset) → VCC
+- Pin 5 (Control Voltage) → Not connected (optional capacitor to GND)
+- Pin 6 (Threshold) → Connected to Pin 7
+- Pin 7 (Discharge) → Connected to 10kΩ resistor to VCC
+- Pin 8 (VCC) → +5V
 
-            <div class="project-section">
-                <h2>Source Code</h2>
-                <div class="code-block">
-                    <pre><code class="language-cpp">
-#include <SoftwareSerial.h>
-#include <DFRobotDFPlayerMini.h>
-
-SoftwareSerial mySerial(10, 11); // RX, TX
-DFRobotDFPlayerMini myDFPlayer;
-
-void setup() {
-  mySerial.begin(9600);
-  Serial.begin(9600);
-
-  if (!myDFPlayer.begin(mySerial)) {
-    Serial.println("Unable to begin DFPlayer Mini.");
-    while(true);
-  }
-  Serial.println("DFPlayer Mini online.");
-
-  myDFPlayer.volume(20);  // Set volume value (0 to 30)
-  myDFPlayer.play(1);     // Play the first MP3 file
-}
-
-void loop() {
-  // Add logic if needed
-}
-</code></pre>
-                </div>
+Timing formula: T = 1.1 × R × C = 1.1 × 10kΩ × 100µF = ~1.1 seconds
+</pre>
             </div>
         </div>
     </div>
-
-
-
-
-
+</div>
 
 
 
